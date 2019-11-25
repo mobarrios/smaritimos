@@ -1,0 +1,13 @@
+
+.scrollable{
+    height:100%;
+    overflow-y: auto;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0);
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89d9737332ed9b864d1929de88ffc439854020dd
