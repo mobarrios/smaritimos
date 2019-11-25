@@ -21,7 +21,7 @@
                         @endforeach
                     </p>
                     <span >
-                        <span class="text-muted">Sucursales : </span>
+                        <span class="text-muted">Depositos Asociados : </span>
                       @foreach(\Illuminate\Support\Facades\Auth::user()->brancheables as $branch)
                         <label class=" label label-default">{{$branch->branches->name}}</label>
                       @endforeach
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3 col-xs-12">
+       {{--  <div class="col-sm-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
@@ -55,8 +55,8 @@
                 {!! Form::close() !!}
             </div>
         </div>
-
-        <div class="col-sm-3 col-xs-12">
+ --}}
+       {{--  <div class="col-sm-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-red-active">
                 <div class="inner">
@@ -68,9 +68,9 @@
                 </div>
                 <a href="{{route('admin.sales.create')}}" class="small-box-footer">Nueva Venta <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="col-sm-3 col-xs-12">
+        {{-- <div class="col-sm-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-orange ">
                 <div class="inner">
@@ -82,7 +82,7 @@
                 </div>
                 <a href="{{route('admin.models.index')}}" class="small-box-footer">ir a Lista  <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-        </div>
+        </div> --}}
 
 
     </div>
