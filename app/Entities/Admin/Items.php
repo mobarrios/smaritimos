@@ -10,7 +10,8 @@
 
      protected $table = 'items';
 
-     protected $fillable = ['name','models_id','status'];
+     protected $fillable = ['nombre','models_id','status','f_emision','f_vencimiento','cod_proveedor','n_serie','emitido_por','n_certificado','capacidad','items_capacidad_tipo_id','company_id','obs'];
+
      protected $section = 'items';
      
 
@@ -52,6 +53,26 @@
      public function getStatusNameAttribute()
      {
          return config('status.items.' . $this->attributes['status']);
+     }
+
+     public function getFEmisionAttribute($value)
+     {
+         return date('d-m-Y',strtotime($value));
+     }
+
+     public function setFEmisionAttribute($value)
+     {
+         $this->attributes['f_emision'] = date('Y-m-d',strtotime($value));
+     }
+
+     public function getFVencimientoAttribute($value)
+     {
+         return date('d-m-Y',strtotime($value));
+     }
+
+     public function setFVencimientoAttribute($value)
+     {
+         $this->attributes['f_vencimiento'] = date('Y-m-d',strtotime($value));
      }
  }
 

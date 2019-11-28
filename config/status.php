@@ -17,11 +17,11 @@ return [
 
     'items' =>
         [
-            1 => 'Disponible',
-            2 => 'Reservado',
-            3 => 'Vendido',
-            4 => 'Solicitado',
-        ],
+            1 => 'Activo',
+            2 => 'No Activo',
+            3 => 'Baja Perdida',
+            4 => 'Baja Rotura',
+            5 => 'Baja Vida útil'        ],
 
     'items_request' =>
         [

@@ -50,7 +50,7 @@ return [
         'name' => 'required',
         //'types_id' => 'required',
         'categories_id' => 'required',
-        'providers_id' => 'required',
+        //'providers_id' => 'required',
 
     ],
 
@@ -59,7 +59,7 @@ return [
         'name' => 'required',
        // 'types_id' => 'required',
         'categories_id' => 'required',
-        'providers_id' => 'required',
+        //x'providers_id' => 'required',
 
     ],
 

@@ -14,7 +14,7 @@
                 <strong>{{$model->name}}</strong>
             </td>
 
-            <td>
+            {{-- <td>
                 @if($model->activeListPrice)
                     <div class="col-xs-12">
                         <strong class="text-danger"> {{$model->activeListPrice->ModelsListsPrices->number }}</strong><br>
@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-            </td>
+            </td> --}}
             <td>
 
 

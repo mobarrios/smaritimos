@@ -15,6 +15,9 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Session;
 use League\Flysystem\Config;
 
+use App\Entities\Configs\Company;
+
+
 
 class ItemsController extends Controller
 {
@@ -34,9 +37,13 @@ class ItemsController extends Controller
         $this->data['models_types'] = $modelsRepo->ListsData('name','id');
         $this->data['colors']       = $colorsRepo->ListsData('name','id');
 
-        $this->data['brands']   = $brandsRepo->getAllWithModels();
+        $this->data['brands']       = $brandsRepo->getAllWithModels();
 
-       // $this->certificatesRepo = $certificatesRepo;
+        $this->data['estados']      =  config('status.items');
+        $this->data['capacidad_tipos'] =    [ 1 => 'Lts',2 => 'Kgs', 3 =>'Cm3'];
+
+        $this->data['companies'] = Company::lists('razon_social','id');
+
     }
 
     public function index()
