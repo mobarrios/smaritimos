@@ -49,7 +49,7 @@
         {!! Form::label('Logo') !!}
         {!! Form::file('image') !!}
 
-        @if($models->images->count() > 0)
+        @if(isset($models) && $models->images->count() > 0)
          <div class="col-xs-12 col-sm-10 col-md-6">
             <img src="{!! $models->images->first()->path !!}" alt="logo" class="img-responsive img-thumbnail">
          </div>

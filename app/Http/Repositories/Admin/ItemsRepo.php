@@ -103,4 +103,49 @@ class ItemsRepo extends BaseRepo
 
     }
 
+    public function update($id, $data)
+    {
+        $model = $this->model->find($id);
+        
+        if(is_object($data))
+            $model->fill($data->all());
+        else
+            $model->fill($data);
+
+
+            // valida si el dato nuevo es diferente al original y lo guarda en updateables
+                $a = $model['original'];
+                $c = $model['attributes'];
+
+
+                $diffs = array_diff($a, $c);
+
+                foreach ($diffs as $diff => $a)
+                {
+                    $col = $diff;
+                    $data = $a;
+
+                    $model->Updateables()->create(['column' => $col, 'data_old' => $data]);
+                }
+            //---
+
+                $model->save();
+
+                //guarda imagenes
+                if(config('models.'.$model->section.'.is_imageable'))
+                    $this->createImage($model, $data);
+
+                //guarda log
+                if(config('models.'.$model->section.'.is_logueable'))
+                    $this->createLog($model, 3);
+
+                //si va a una sucursal
+                if(config('models.'.$model->section.'.is_brancheable'))
+                    $this->createBrancheables($model, $data->branches_id);
+
+
+
+        return $model;
+    }
+
 }

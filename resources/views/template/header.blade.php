@@ -43,7 +43,7 @@
                         <span class="hidden-xs">{{\Illuminate\Support\Facades\Auth::user()->email}}</span>
                     </a>
                 </li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a class="dropdown-toggle text-black" data-toggle="dropdown" href="#" aria-expanded="false">
                         <span class="fa fa-building"></span>
                         {{\Illuminate\Support\Facades\Auth::user()->BranchesActive->name}}
@@ -54,7 +54,7 @@
                             <li role="presentation"><a  class="text-sm" role="menuitem" tabindex="-1" href="{{route('configs.users.changeBranch',$branch->Branches->id)}}"> {{$branch->Branches->name}} </a></li>
                         @endforeach
                     </ul>
-                </li>
+                </li> --}}
 
 
 

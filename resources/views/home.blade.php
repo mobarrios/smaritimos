@@ -32,30 +32,47 @@
             </div>
         </div>
 
-       {{--  <div class="col-sm-3 col-xs-12">
+        <div class="col-sm-8 col-xs-12">
             <!-- small box -->
-            <div class="small-box bg-aqua">
+            <div class="small-box bg-red-active">
                 <div class="inner">
-                    <h3>{{\App\Entities\Admin\Budgets::all()->count()}}</h3>
-                    <p>Presupuestos</p>
+                    <h3>Vencimientos</h3>
+                    <p>Próximos</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-android-bookmark"></i>
+                    <i class="ion ion-android-calendar"></i>
                 </div>
             </div>
-            <div class="box-footer">
-                {!! Form::open(['route'=>('admin.budgets.index'),'method'=>'GET']) !!}
-                    <div class="input-group">
-                        <input name="search" placeholder="Buscar Presupuesto..." class="form-control" type="text">
-                        <input  type="hidden" name="filter[]" value="id">
-                          <span class="input-group-btn">
-                            <button type="submit" class="btn bg-aqua btn-flat"><span class="fa fa-search"></span></button>
-                          </span>
-                    </div>
-                {!! Form::close() !!}
+            <div class="">
+                <table class="table">
+                    <thead>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Articulo
+                        </th>
+                         <th>
+                            Fecha Vto.p
+                        </th>
+                    </thead>
+                    <tbody>
+                        @foreach($items as $item)
+                            @if($item->isVencido)
+                                <tr>
+                                    <td>{{$item->id}}</td>
+                                    <td><a href="{{route('admin.items.edit',$item->id)}}">{{$item->Models->name}}</a></td>
+                                    <td>{{$item->f_vencimiento}}</td>
+                                    <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                    
+                </table>
             </div>
-        </div>
- --}}
+       </div>
+
        {{--  <div class="col-sm-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-red-active">

@@ -5,6 +5,9 @@
  use App\Entities\Entity;
  use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
+
  class Items extends Entity
  {
 
@@ -73,6 +76,35 @@
      public function setFVencimientoAttribute($value)
      {
          $this->attributes['f_vencimiento'] = date('Y-m-d',strtotime($value));
+     }
+
+
+     public function getIsVencidoAttribute(){
+
+        $dias_ant   = $this->Models->dias_vto;
+        $vto        = $this->attributes['f_vencimiento'];
+        $today      = date('Y-m-d');
+
+
+        $created    = new Carbon($vto);
+        $now        = Carbon::now();
+        $difference =  $now->diffInDays($created,false);
+
+
+        if(($difference + 1 ) <= 0  )
+        {
+             return false;
+        }
+        else
+        {   
+            if(($difference+1) <= $dias_ant)
+            {
+                return true;
+            }
+
+             
+        }
+        
      }
  }
 

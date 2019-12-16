@@ -23,9 +23,15 @@
         {{--{!! Form::label('Tipo') !!}--}}
         {{--{!! Form::select('types_id', $types , null ,['class'=>'select2 form-control' ]) !!}--}}
     {{--</div>--}}
-    <div class="col-xs-3 ">
+    <div class="col-xs-6 ">
         {!! Form::label('Categorias') !!}
         {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+    </div>
+
+
+    <div class="col-xs-2 form-group">
+        {!! Form::label('Dias Aviso Vencimiento') !!}
+        {!! Form::text('dias_vto', null, ['class'=>'form-control']) !!}
     </div>
 
     {{-- <div class="col-xs-6 form-group">
@@ -58,12 +64,11 @@
     </div>
  --}}
 
-    <div class="col-xs-3 form-group">
+    <div class="col-xs-4 form-group">
         {!! Form::label('Imagen') !!}
         {!! Form::file('image') !!}
     </div>
 
-    <div class="col-xs-12">
         <div class="col-xs-12 col-md-6">
             <h4>Stock Actual</h4>
             <table class="table">
@@ -81,7 +86,7 @@
         </div>
 
 
-        @if(isset($models))
+      {{--   @if(isset($models))
             <div class="col-xs-6 " id="adicionales">
                 <h4>Adicionales</h4>
                 <div class="input-group">
@@ -99,7 +104,7 @@
                     </div>
 
                 </div><!-- /input-group -->
-                <br>
+                <br> --}}
 
 
                 {{-- <table class="table adicionales">
@@ -116,9 +121,8 @@
                             </tr>
                         @endforeach
                 </table> --}}
-            </div>
-        @endif
-    </div>
+            {{-- </div>
+        @endif --}}
 
 @endsection
 

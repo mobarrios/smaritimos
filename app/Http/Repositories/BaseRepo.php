@@ -143,20 +143,22 @@ abstract class BaseRepo
 
     public function ListAll($section = null)
     {
-        if (config('models.' . $section . '.is_brancheable')) {
-            return $this->model->whereHas('Brancheables', function ($q) {
+        // if (config('models.' . $section . '.is_brancheable')) {
+        //     return $this->model->whereHas('Brancheables', function ($q) {
 
-                // lista todos los branches del usuario
-                //$q->whereIn('branches_id',Auth::user()->branches_id );\
+        //         // lista todos los branches del usuario
+        //         //$q->whereIn('branches_id',Auth::user()->branches_id );\
 
-                // lista en el branch actual del usuario
-                $q->where('branches_id', Auth::user()->branches_active_id);
+        //         // lista en el branch actual del usuario
+        //         $q->where('branches_id', Auth::user()->branches_active_id);
 
-            });
+        //     });
 
-        } else {
+        // } else {
+
+            $this->model->all();
             return $this->model;
-        }
+        //}
     }
 
     public function ListAllWhere($section = null, $columnAndValue = [])

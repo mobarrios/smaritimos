@@ -15,10 +15,23 @@
 
         <div class="row">
 
-             <div class="col-xs-12 form-group">
+             <div class="col-xs-12  form-group">
+                {!! Form::label('Modelo') !!}
+                <select name='models_id' class=" select2 form-control">
+                    @foreach($brands as $br)
+                        <optgroup label="{{$br->name}}">
+                            @foreach($br->Models as $m)
+                                    <option value="{{$m->id}}" @if(isset($models) && ($models->models_id == $m->id)) selected="selected" @endif>{{$m->name}}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
+            </div>
+
+           {{--   <div class="col-xs-12 form-group">
                 {!! Form::label('Nombre / N Certificado ') !!}
                 {!! Form::text('nombre', null, ['class'=>'form-control']) !!}
-            </div>
+            </div> --}}
 
             <div class="col-xs-6 form-group">
                 {!! Form::label('N. Serie') !!}
@@ -34,24 +47,13 @@
             @if(config('models.'.$section.'.is_brancheable'))
                 <div class="col-xs-6 form-group">
                     {!! Form::label('Deposito') !!}
-                    {!! Form::select('branches_id[]',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!}
+                    {!! Form::select('branches_id',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!}
                 </div>
             @endif
 
 
 
-            <div class="col-xs-6  form-group">
-                {!! Form::label('Modelo') !!}
-                <select name='models_id' class=" select2 form-control">
-                    @foreach($brands as $br)
-                        <optgroup label="{{$br->name}}">
-                            @foreach($br->Models as $m)
-                                    <option value="{{$m->id}}" @if(isset($models) && ($models->models_id == $m->id)) selected="selected" @endif>{{$m->name}}</option>
-                            @endforeach
-                        </optgroup>
-                    @endforeach
-                </select>
-            </div>
+           
 
 
             <div class="col-xs-6 form-group">
@@ -66,11 +68,11 @@
 
            
 
-            <div class="col-xs-6 form-group">
+            {{-- <div class="col-xs-6 form-group">
                 {!! Form::label('Emitido Por') !!}
                 {!! Form::text('emitido_por', null, ['class'=>'form-control']) !!}
             </div>
-        
+         --}}
             <div class="col-xs-6 form-group">
                 {!! Form::label('Estado') !!}
                 {!! Form::select('status', $estados, null, ['class'=>'form-control select2']) !!}
@@ -88,7 +90,7 @@
 
              <div class="col-xs-6 form-group">
                 {!! Form::label('Empresa') !!}
-                {!! Form::select('company_id', $companies, null, ['class'=>'select2 form-control']) !!}
+                {!! Form::select('company_id', $companies, (isset($models) ? $models->company_id : '' ), ['class'=>'select2 form-control']) !!}
             </div>
 
 
