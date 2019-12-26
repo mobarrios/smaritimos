@@ -34,21 +34,24 @@
             </div> --}}
 
             <div class="col-xs-6 form-group">
-                {!! Form::label('N. Serie') !!}
+                {!! Form::label('N. Serie / Identificación') !!}
                 {!! Form::text('n_serie', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="col-xs-6 form-group">
+            <!-- <div class="col-xs-6 form-group">
                 {!! Form::label('N. Serie Original') !!}
                 {!! Form::text('cod_proveedor', null, ['class'=>'form-control']) !!}
-            </div>
+            </div> -->
 
 
             @if(config('models.'.$section.'.is_brancheable'))
                 <div class="col-xs-6 form-group">
                     {!! Form::label('Deposito') !!}
-                    {!! Form::select('branches_id',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!}
-                </div>
+<!--                     {!! Form::select('branches_id',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!}
+ -->                
+                    {!! Form::select('branches_id',$branches , null, ['class'=>' select2  form-control']) !!}
+
+</div>
             @endif
 
 

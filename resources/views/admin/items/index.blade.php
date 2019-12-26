@@ -16,6 +16,9 @@
                         <label class="label label-primary"> {{$model->statusName}} </label><br>
                     <p class="text-muted">ingreso : {{$model->fechaIngreso}}</p>
                 </td>
+                <td>
+                    <a href="{{route('admin.items.printQr',$model->id)}}" class="btn btn-md btn-default"><p class="fa fa-qrcode"></p></a>
+                </td>
             </tr>
         @endforeach
 

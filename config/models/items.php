@@ -40,10 +40,9 @@ return [
     //column search
     'search' => [
         
-            'Nombre'    => 'name',
-            'Color'     =>  ['colors','name'] ,
+            'NSerie'    => 'n_serie',
             'Modelo'     => ['models','name'],
-            'Sucursal'   => ['branches','name'],
+            'Deposito'   => ['branches','name'],
     ],
 
     'validationsStore' => [

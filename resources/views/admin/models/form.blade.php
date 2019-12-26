@@ -64,10 +64,10 @@
     </div>
  --}}
 
-    <div class="col-xs-4 form-group">
+    <!-- <div class="col-xs-4 form-group">
         {!! Form::label('Imagen') !!}
         {!! Form::file('image') !!}
-    </div>
+    </div> -->
 
         <div class="col-xs-12 col-md-6">
             <h4>Stock Actual</h4>

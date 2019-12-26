@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 use League\Flysystem\Config;
 
 use App\Entities\Configs\Company;
+use App\Entities\Configs\Branches;
 
 
 
@@ -40,9 +41,11 @@ class ItemsController extends Controller
         $this->data['brands']       = $brandsRepo->getAllWithModels();
 
         $this->data['estados']      =  config('status.items');
-        $this->data['capacidad_tipos'] =    [ 1 => 'Lts',2 => 'Kgs', 3 =>'Cm3'];
+        $this->data['capacidad_tipos'] =    [ 1 => 'Lts',2 => 'Kgs', 3 =>'Cm3', 4=>'Unidad', 5 => 'Personas'] ;
 
         $this->data['companies'] = Company::lists('razon_social','id');
+
+        $this->data['branches'] = Branches::lists('name','id');
 
     }
 
