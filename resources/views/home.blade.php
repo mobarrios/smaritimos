@@ -53,7 +53,7 @@
                             Articulo
                         </th>
                          <th>
-                            Fecha Vto.p
+                            Fecha vto.
                         </th>
                     </thead>
                     <tbody>
