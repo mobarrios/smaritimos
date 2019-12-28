@@ -23,8 +23,8 @@ class CreateItemsTable extends Migration
             
             $table->integer('models_id');
 
-            $table->date('f_emision');
-            $table->date('f_vencimiento');
+            $table->date('f_emision')->nullable()->dafault(null);
+            $table->date('f_vencimiento')->nullable()->dafault(null);;
 
             $table->string('cod_proveedor');
             $table->string('n_serie');

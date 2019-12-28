@@ -14,7 +14,8 @@
                 </td>
                 <td>
                         <label class="label label-primary"> {{$model->statusName}} </label><br>
-                    <p class="text-muted">ingreso : {{$model->fechaIngreso}}</p>
+                    <p class="text-muted">Vto. : {{$model->f_vencimiento}}</p>
+
                 </td>
                 <td>
                     <a href="{{route('admin.items.edit',$model->id)}}" class="btn btn-md btn-default"><p class="fa fa-qrcode"></p></a>

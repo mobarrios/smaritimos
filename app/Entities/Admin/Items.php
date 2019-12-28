@@ -60,22 +60,50 @@ use Carbon\Carbon;
 
      public function getFEmisionAttribute($value)
      {
+        if(is_null($value))
+        {
+           return null;            
+        }
+        else
+        {
          return date('d-m-Y',strtotime($value));
+        }
      }
 
      public function setFEmisionAttribute($value)
      {
-         $this->attributes['f_emision'] = date('Y-m-d',strtotime($value));
+        if($value == "")
+        {
+            $this->attributes['f_emision'] = null;             
+        }
+        else
+        {
+             $this->attributes['f_emision'] = date('Y-m-d',strtotime($value));
+        }
      }
 
      public function getFVencimientoAttribute($value)
      {
+            if(is_null($value))
+        {
+           return null;            
+        }
+            else
+        {
          return date('d-m-Y',strtotime($value));
+        }
      }
 
      public function setFVencimientoAttribute($value)
      {
+        if($value == "")
+        {
+            $this->attributes['f_vencimiento'] = null;             
+        }
+        else
+        {
          $this->attributes['f_vencimiento'] = date('Y-m-d',strtotime($value));
+        }  
      }
 
 

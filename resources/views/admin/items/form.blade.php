@@ -76,10 +76,7 @@
                 {!! Form::text('emitido_por', null, ['class'=>'form-control']) !!}
             </div>
          --}}
-            <div class="col-xs-6 form-group">
-                {!! Form::label('Estado') !!}
-                {!! Form::select('status', $estados, null, ['class'=>'form-control select2']) !!}
-            </div>
+            
 
             <div class="col-xs-6 form-group">
                 {!! Form::label('Capacidad') !!}
@@ -90,7 +87,10 @@
                 {!! Form::label('Tipo Capacidad') !!}
                 {!! Form::select('items_capacidad_tipo_id', $capacidad_tipos,  null, ['class'=>'form-control select2']) !!}
             </div>
-
+            <div class="col-xs-6 form-group">
+                {!! Form::label('Estado') !!}
+                {!! Form::select('status', $estados, null, ['class'=>'form-control select2']) !!}
+            </div>
              <div class="col-xs-6 form-group">
                 {!! Form::label('Empresa') !!}
                 {!! Form::select('company_id', $companies, (isset($models) ? $models->company_id : '' ), ['class'=>'select2 form-control']) !!}

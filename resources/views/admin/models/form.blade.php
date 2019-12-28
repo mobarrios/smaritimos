@@ -25,7 +25,11 @@
     {{--</div>--}}
     <div class="col-xs-6 ">
         {!! Form::label('Categorias') !!}
-        {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @if(isset($models)) 
+            {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @else
+            {!! Form::select('categories_id[]', $categories , [1,2] ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @endif
     </div>
 
 
