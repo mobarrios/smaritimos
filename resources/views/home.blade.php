@@ -61,7 +61,7 @@
                             @if($item->isVencido)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td><a href="{{route('admin.items.edit',$item->id)}}">{{$item->Models->name}}</a></td>
+                                    <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
                                     <td>{{$item->f_vencimiento}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
                                 </tr>

@@ -14,6 +14,7 @@ Route::group(['prefix'=>'items'],function(){
         Route::get('/index/{search?}',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.index','uses'=>'Admin\ItemsController@index']);
 
         Route::get('/pdf',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.pdf','uses'=>'Utilities\UtilitiesController@exportListToPdf']);
+        Route::get('/qrItems/{id?}',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.qr','uses'=>'Utilities\UtilitiesController@qrItems']);
 
 });
 

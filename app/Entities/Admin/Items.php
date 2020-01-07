@@ -119,6 +119,9 @@ use Carbon\Carbon;
         $difference =  $now->diffInDays($created,false);
 
 
+        if($vto == "")
+            return false;
+
         if(($difference + 1 ) <= 0  )
         {
              return false;

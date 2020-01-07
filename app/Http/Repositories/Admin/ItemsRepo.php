@@ -169,8 +169,7 @@ class ItemsRepo extends BaseRepo
                 if(config('models.'.$model->section.'.is_logueable'))
                     $this->createLog($model, 3);
 
-                //si va a una sucursal
-                if(config('models.'.$model->section.'.is_brancheable'))
+                 if(config('models.'.$model->section.'.is_brancheable'))
                     $this->createBrancheables($model, $data->branches_id);
 
 

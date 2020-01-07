@@ -18,7 +18,7 @@
 
                 </td>
                 <td>
-                    <a href="{{route('admin.items.edit',$model->id)}}" class="btn btn-md btn-default"><p class="fa fa-qrcode"></p></a>
+                    <a href="{{route('admin.items.qr',$model->id)}}" class="btn btn-md btn-default"><p class="fa fa-qrcode"></p></a>
                 </td>
             </tr>
         @endforeach

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Excel;
 
+use \Milon\Barcode\DNS2D;
+
+
 
 class UtilitiesController extends Controller
 {
@@ -86,5 +89,17 @@ class UtilitiesController extends Controller
         $pdf->setPaper('A4', 'portrait')->loadView('admin.vouchers.facturaPdf',compact('model'));
 
         return $pdf->stream();
+    }
+
+
+    public function qrItems(Route $route){
+
+        $itemsId = $route->getParameter('id');
+
+
+        $data = "id : ". $itemsId ;
+
+        return DNS2D::getBarcodeHTML($data, "QRCODE");
+
     }
 }
