@@ -32,5 +32,7 @@ class Kernel extends HttpKernel
         'role' => \Bican\Roles\Middleware\VerifyRole::class,
         'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
         'level' => \Bican\Roles\Middleware\VerifyLevel::class,
+        'cors' => \App\Http\Middleware\Cors::class,
+
     ];
 }
