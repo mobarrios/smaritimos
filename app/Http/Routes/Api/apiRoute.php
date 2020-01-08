@@ -28,7 +28,7 @@ Route::group(['prefix' => 'articulos'], function(){
 
         $result = [];
 
-        $items = \App\Entities\Admin\Items::find($articulosId)->get();
+        $items = \App\Entities\Admin\Items::where('id',$articulosId)->get();
 
         
         foreach ($items as $item)
