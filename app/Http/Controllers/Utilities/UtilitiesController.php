@@ -97,7 +97,7 @@ class UtilitiesController extends Controller
 
         //$data = $itemsId ;
 
-        $pdf->setPaper('A4', 'portrait')->loadView('admin.items.qr',compact('itemsId'));
+        $pdf->setPaper('A4', 'portrait')->loadView('admin.items.qr',compact('itemsId');
 
         return $pdf->stream();
        // return DNS2D::getBarcodeHTML($data, "QRCODE");
