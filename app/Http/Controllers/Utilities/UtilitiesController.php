@@ -10,7 +10,6 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Excel;
-
 use \Milon\Barcode\DNS2D;
 
 
@@ -92,14 +91,16 @@ class UtilitiesController extends Controller
     }
 
 
-    public function qrItems(Route $route){
+    public function qrItems(Route $route, PDF $pdf ){
 
         $itemsId = $route->getParameter('id');
 
+        //$data = $itemsId ;
 
-        $data = "id : ". $itemsId ;
+        $pdf->setPaper('A4', 'portrait')->loadView('admin.items.qr',compact('itemsId'));
 
-        return DNS2D::getBarcodeHTML($data, "QRCODE");
+        return $pdf->stream();
+       // return DNS2D::getBarcodeHTML($data, "QRCODE");
 
     }
 }

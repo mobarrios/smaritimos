@@ -2,6 +2,28 @@
 
 Route::group(['prefix' => 'articulos'], function(){
 
+    Route::get('all',function(){
+
+        $result = [];
+
+        $items = \App\Entities\Admin\Items::all();
+dd($items);
+        
+        foreach ($items as $item)
+
+        if($item->isVencido)
+            array_push($result,
+                [
+                    'id' => $item->id,
+                    'marca'=> $item->Models->Brands->name,
+                    'modelo'=> $item->Models->name,
+                    'f_venciemiento' => $item->f_vencimiento,
+                ]);
+
+        return response()->json($result,200);
+
+    });
+
     Route::get('vencimientos',function(){
 
         $result = [];
@@ -38,7 +60,7 @@ Route::group(['prefix' => 'articulos'], function(){
                     'id' => $item->id,
                     'marca'=> $item->Models->Brands->name,
                     'modelo'=> $item->Models->name,
-                    'f_venciemiento' => $item->f_vencimiento,
+                    'f_vencimiento' => $item->f_vencimiento,
                     'f_emision' => $item->f_emision,
                     'n_serie' => $item->n_serie,
                     'obs' => $item->obs
