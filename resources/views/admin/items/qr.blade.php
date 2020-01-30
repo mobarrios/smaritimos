@@ -1,5 +1,5 @@
 <html>
 <body>
-{!!  DNS1D::getBarcodeHTML($itemsId, "QRCODE") !!}
+{!!  DNS2D::getBarcodeHTML($data, "QRCODE") !!}
 </body>
 </html>
