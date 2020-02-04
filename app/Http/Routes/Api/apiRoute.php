@@ -7,7 +7,6 @@ Route::group(['prefix' => 'articulos'], function(){
         $result = [];
 
         $items = \App\Entities\Admin\Items::all();
-dd($items);
         
         foreach ($items as $item)
 
@@ -28,9 +27,8 @@ dd($items);
 
         $result = [];
 
-        $items = \App\Entities\Admin\Items::all();
+        $items = \App\Entities\Admin\Items::with('Brancheables.Branches')->get();
 
-        
         foreach ($items as $item)
 
         if($item->isVencido)
@@ -40,6 +38,7 @@ dd($items);
                     'marca'=> $item->Models->Brands->name,
                     'modelo'=> $item->Models->name,
                     'f_venciemiento' => $item->f_vencimiento,
+                    'deposito' => $item->Brancheables->first()->branches->name
                 ]);
 
         return response()->json($result,200);
@@ -71,6 +70,42 @@ dd($items);
 
     });
 
+
+     Route::get('byBranches',function(){
+
+        $result = [];
+
+        $items =  DB::table('items')
+         ->join('brancheables', function ($q) {
+                $q->on('items.id', '=', 'brancheables.entities_id')
+                    ->where('brancheables.entities_type', 'like', '%Items%');
+        })
+         ->join('branches','branches.id','=','brancheables.branches_id')
+         ->join('models','models.id','=','items.models_id')
+         ->join('brands','brands.id','=','models.brands_id')
+         ->select('items.id','brands.name as brand','models.name as model','items.f_vencimiento','items.f_emision','items.n_serie','items.obs', 'branches.name as deposito')
+         ->get();
+
+        foreach ($items as $item)
+
+            array_push($result,
+                [
+                    'id' => $item->id,
+                    'marca'=> $item->brand,
+                    'modelo'=> $item->model,
+                    'deposito' => $item->deposito,
+                    'f_vencimiento' => $item->f_vencimiento,
+                    'f_emision' => $item->f_emision,
+                    'n_serie' => $item->n_serie,
+                    'obs' => $item->obs
+
+                ]);
+
+
+        return response()->json($result,200);
+
+    });
+
 });
 
 
@@ -96,6 +131,47 @@ Route::group(['prefix' => 'depositos'], function () {
     });
 });
 
+
+// categorias
+Route::group(['prefix' => 'categorias'], function () {
+
+    Route::get('all', function () {
+        $result = [];
+
+        $models = \App\Entities\Admin\Categories::all();
+
+        foreach ($models as $model)
+
+            array_push($result,
+                [
+                    'id' => $model->id,
+                    'name' => $model->name,                    
+                ]);
+
+        return response()->json($result,200);
+    });
+});
+
+// usuarios
+Route::group(['prefix' => 'usuarios'], function () {
+
+    Route::get('all', function () {
+        $result = [];
+
+        $models = \App\Entities\Configs\User::all();
+
+        foreach ($models as $model)
+
+            array_push($result,
+                [
+                    'id' => $model->id,
+                    'username' => $model->user_name,
+                    ['sucursales' => $model->Brancheables]              
+                ]);
+
+        return response()->json($result,200);
+    });
+});
 
 // // brands
 // Route::group(['prefix' => 'brands'], function () {
