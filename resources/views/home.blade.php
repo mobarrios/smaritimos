@@ -34,7 +34,7 @@
 
         <div class="col-sm-8 col-xs-12">
             <!-- small box -->
-            <div class="small-box bg-red-active">
+            <div class="small-box bg-orange">
                 <div class="inner">
                     <h3>Vencimientos</h3>
                     <p>Próximos</p>
@@ -43,8 +43,8 @@
                     <i class="ion ion-android-calendar"></i>
                 </div>
             </div>
-            <div class="">
-                <table class="table">
+            <div class="box box-warning table-responsive">
+                <table class="table table-stripped ">
                     <thead>
                         <th>
                             #

@@ -161,13 +161,25 @@ Route::group(['prefix' => 'usuarios'], function () {
         $models = \App\Entities\Configs\User::all();
 
         foreach ($models as $model)
+        {
+            $br = [];
 
-            array_push($result,
+            foreach($model->Brancheables as $branches)
+            {
+                array_push($br,
                 [
-                    'id' => $model->id,
-                    'username' => $model->user_name,
-                    ['sucursales' => $model->Brancheables]              
+                    'id' => $branches->branches->id,
+                    'nombre' => $branches->branches->name
                 ]);
+            }
+
+                array_push($result,
+                    [
+                        'id' => $model->id,
+                        'username' => $model->user_name,
+                        ['sucursales' => $br]             
+                    ]);
+        }
 
         return response()->json($result,200);
     });
