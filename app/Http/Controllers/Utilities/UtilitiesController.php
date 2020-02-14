@@ -96,7 +96,7 @@ class UtilitiesController extends Controller
         $itemsId = $route->getParameter('id');
 
         $data = $itemsId ;
-        $customPaper = array(0,0,62,30.4);
+        $customPaper = array(0,0,62,31);
 
 
         $pdf->loadView('admin.items.qr',compact('data'))->setPaper($customPaper, 'portrait');
