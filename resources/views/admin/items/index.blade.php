@@ -1,12 +1,13 @@
 @extends('template.model_index')
 
     @section('table')
+
         @foreach($models as $model)
             <tr>
                 <td style="width: 1%"><input class="id_destroy" value="{{$model->id}}" type="checkbox"></td>
                 <td>{{$model->id}}</td>
                 <td>N/S : {{$model->n_serie}}</td>
-                <td>{{$model->Models->Brands->name }} <strong>{{$model->Models->name }}</strong><br></td>
+                <td>{{$model->Models->Brands->name or '' }} <strong>{{$model->Models->name or '' }}</strong><br></td>
                 <td>
                     @foreach($model->Brancheables as $branch)
                        <label class="label label-default"> {{$branch->branches->name}} </label>
