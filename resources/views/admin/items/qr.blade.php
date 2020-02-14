@@ -2,7 +2,7 @@
 <body>
 
 <div style="padding: 5px">
-	{!!  DNS2D::getBarcodeHTML($data, "QRCODE") !!}
+	{!!  DNS2D::getBarcodeHTML($it->id, "QRCODE") !!}
 </div>	
 </body>
 </html>
