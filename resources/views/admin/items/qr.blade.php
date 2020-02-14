@@ -5,9 +5,9 @@
 	{!!  DNS2D::getBarcodeHTML($it->id, "QRCODE") !!}
 </div>	
 <div>
-	Modelo : <h1>{{$it->Models->name}}</h1>
-	NSerie / IDent. : <h3>{{$it->n_serie}}</h3>
-	Vto. :<h3>{{$it->f_vencimiento}}</h3>
+	Modelo : <h3>{{$it->Models->name}}</h3>
+	NSerie / IDent. : <h4>{{$it->n_serie}}</h4>
+	Vto. :<h4>{{$it->f_vencimiento}}</h4>
 	
 </div>
 </body>
