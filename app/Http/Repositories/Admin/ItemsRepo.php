@@ -136,7 +136,8 @@ class ItemsRepo extends BaseRepo
     public function update($id, $data)
     {
         $model = $this->model->find($id);
-        
+
+
         if(is_object($data))
             $model->fill($data->all());
         else
@@ -153,9 +154,9 @@ class ItemsRepo extends BaseRepo
                 foreach ($diffs as $diff => $a)
                 {
                     $col = $diff;
-                    $data = $a;
+                    $datas = $a;
 
-                    $model->Updateables()->create(['column' => $col, 'data_old' => $data]);
+                    $model->Updateables()->create(['column' => $col, 'data_old' => $datas]);
                 }
             //---
 
@@ -170,8 +171,8 @@ class ItemsRepo extends BaseRepo
                     $this->createLog($model, 3);
 
                  if(config('models.'.$model->section.'.is_brancheable'))
-                    $this->createBrancheables($model, $data->branches_id);
-
+                    $this->createBrancheables($model, $data->get('branches_id'));       
+                       
 
 
         return $model;

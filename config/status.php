@@ -22,7 +22,9 @@ return [
             3 => 'Baja por Perdida',
             4 => 'Baja por Rotura',
             5 => 'Baja por fin Vida útil',
-            6 => 'En Reparación'       ],
+            6 => 'En Reparación',      
+            7 => 'En Tramite' 
+        ],
 
     'items_request' =>
         [

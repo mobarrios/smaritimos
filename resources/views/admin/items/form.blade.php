@@ -47,8 +47,8 @@
             @if(config('models.'.$section.'.is_brancheable'))
                 <div class="col-xs-6 form-group">
                     {!! Form::label('Deposito') !!}
-<!--                     {!! Form::select('branches_id',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!}
- -->                
+                   {{--  {!! Form::select('branches_id',\Illuminate\Support\Facades\Auth::user()->getBranchName() , null, ['class'=>' select2  form-control']) !!} --}}
+               
                     {!! Form::select('branches_id',$branches , null, ['class'=>' select2  form-control']) !!}
 
 </div>
