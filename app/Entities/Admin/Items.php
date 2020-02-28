@@ -1,7 +1,7 @@
 <?php
  namespace App\Entities\Admin;
 
-
+ use Mail;
  use App\Entities\Entity;
  use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
      protected $table = 'items';
 
-     protected $fillable = ['nombre','models_id','status','f_emision','f_vencimiento','cod_proveedor','n_serie','emitido_por','n_certificado','capacidad','items_capacidad_tipo_id','company_id','obs'];
+     protected $fillable = ['nombre','models_id','status','f_emision','f_vencimiento','cod_proveedor','n_serie','emitido_por','n_certificado','capacidad','items_capacidad_tipo_id','company_id','obs','sent'];
 
      protected $section = 'items';
      
@@ -130,6 +130,16 @@ use Carbon\Carbon;
         {   
             if(($difference+1) <= $dias_ant)
             {
+                    if(!$this->sent){
+                            Mail::send('mails.vto', ['id' => $this->id],
+                             function ($m)  {
+                                $m->from('help@coders.com.ar', 'coders.com.ar');
+                                $m->to('armamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                $this->sent = 1;
+                                $this->save();
+                                });
+                        }
+
                 return true;
             }
 
