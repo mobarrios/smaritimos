@@ -14,7 +14,8 @@
         "nesbot/carbon": "~1.18",
         "bican/roles": "2.1.*",
         "milon/barcode": "^5.1",
-        "kartik-v/bootstrap-fileinput": "dev-master"
+        "kartik-v/bootstrap-fileinput": "dev-master",
+        "doctrine/inflector": "1.1.0"
 
     },
     "require-dev": {
