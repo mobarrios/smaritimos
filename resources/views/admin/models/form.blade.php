@@ -25,7 +25,11 @@
     {{--</div>--}}
     <div class="col-xs-6 ">
         {!! Form::label('Categorias') !!}
-        {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @if(isset($models)) 
+            {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @else
+            {!! Form::select('categories_id[]', $categories , [1,2] ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+        @endif
     </div>
 
 
@@ -64,10 +68,10 @@
     </div>
  --}}
 
-    <div class="col-xs-4 form-group">
+    <!-- <div class="col-xs-4 form-group">
         {!! Form::label('Imagen') !!}
         {!! Form::file('image') !!}
-    </div>
+    </div> -->
 
         <div class="col-xs-12 col-md-6">
             <h4>Stock Actual</h4>

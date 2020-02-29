@@ -103,10 +103,41 @@ class ItemsRepo extends BaseRepo
 
     }
 
+    public function create($data)
+    {
+
+        $model = new $this->model();
+
+        if(is_object($data))
+            $model->fill($data->all());
+        else
+            $model->fill($data);
+
+        $model->save();
+
+
+        //guarda imagenes
+        if(config('models.'.$model->section.'.is_imageable'))
+            $this->createImage($model, $data);
+
+        //guarda log
+        if(config('models.'.$model->section.'.is_logueable'))
+            $this->createLog($model, 1);
+
+        //si va a una sucursal
+        if(config('models.'.$model->section.'.is_brancheable'))
+            $this->createBrancheables($model, $data->branches_id);
+
+
+        return $model;
+    }
+
+
     public function update($id, $data)
     {
         $model = $this->model->find($id);
-        
+
+
         if(is_object($data))
             $model->fill($data->all());
         else
@@ -123,9 +154,9 @@ class ItemsRepo extends BaseRepo
                 foreach ($diffs as $diff => $a)
                 {
                     $col = $diff;
-                    $data = $a;
+                    $datas = $a;
 
-                    $model->Updateables()->create(['column' => $col, 'data_old' => $data]);
+                    $model->Updateables()->create(['column' => $col, 'data_old' => $datas]);
                 }
             //---
 
@@ -139,10 +170,9 @@ class ItemsRepo extends BaseRepo
                 if(config('models.'.$model->section.'.is_logueable'))
                     $this->createLog($model, 3);
 
-                //si va a una sucursal
-                if(config('models.'.$model->section.'.is_brancheable'))
-                    $this->createBrancheables($model, $data->branches_id);
-
+                 if(config('models.'.$model->section.'.is_brancheable'))
+                    $this->createBrancheables($model, $data->get('branches_id'));       
+                       
 
 
         return $model;

@@ -19,9 +19,12 @@ return [
         [
             1 => 'Activo',
             2 => 'No Activo',
-            3 => 'Baja Perdida',
-            4 => 'Baja Rotura',
-            5 => 'Baja Vida útil'        ],
+            3 => 'Baja por Perdida',
+            4 => 'Baja por Rotura',
+            5 => 'Baja por fin Vida útil',
+            6 => 'En Reparación',      
+            7 => 'En Tramite' 
+        ],
 
     'items_request' =>
         [

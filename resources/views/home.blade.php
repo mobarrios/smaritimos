@@ -34,34 +34,31 @@
 
         <div class="col-sm-8 col-xs-12">
             <!-- small box -->
-            <div class="small-box bg-red-active">
-                <div class="inner">
-                    <h3>Vencimientos</h3>
-                    <p>Próximos</p>
+            
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">                      
+                        <i class="ion ion-android-calendar"></i> <strong>Proximos Vencimientos</strong></h3>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-android-calendar"></i>
-                </div>
-            </div>
-            <div class="">
-                <table class="table">
+                <div class="box-body">
+                <table class="table table-stripped ">
                     <thead>
-                        <th>
+                        <th class="col-xs-1" >
                             #
                         </th>
-                        <th>
+                        <th class="col-xs-10" >
                             Articulo
                         </th>
-                         <th>
-                            Fecha Vto.p
+                         <th class="col-xs-1" >
+                            Fecha vto.
                         </th>
                     </thead>
                     <tbody>
                         @foreach($items as $item)
                             @if($item->isVencido)
                                 <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td><a href="{{route('admin.items.edit',$item->id)}}">{{$item->Models->name}}</a></td>
+                                    <td >{{$item->id}}</td>
+                                    <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
                                     <td>{{$item->f_vencimiento}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
                                 </tr>
@@ -70,6 +67,77 @@
                     </tbody>
                     
                 </table>
+                </div>
+            </div>
+       </div>
+
+        <div class="col-sm-8 col-xs-12">
+            <!-- small box -->
+            <div class="box box-warning">
+                <div class="box-header">
+                    <h3 class="box-title">                      
+                        <i class="ion ion-android-calendar"></i> <strong>Articulos Vencidos</strong></h3>
+                </div>
+                <div class="box-body">
+                <table class="table table-stripped ">
+                    <thead>
+                        <th class="col-xs-1">
+                            #
+                        </th>
+                        <th class="col-xs-10">
+                            Articulo
+                        </th>
+                         <th class="col-xs-1">
+                            Fecha vto.
+                        </th>
+                    </thead>
+                    <tbody>
+                        @foreach($anteriores as $ant)
+                                <tr>
+                                    <td>{{$ant->id}}</td>
+                                    <td><a href="{{route('admin.items.edit',$ant->id)}}"><strong>{{$ant->Models->Brands->name}}</strong>  {{$ant->Models->name}}</a></td>
+                                    <td>{{$ant->f_vencimiento}}</td>
+                                    <td><label class="label label-default">{{ config('status.items.' . $ant->status) }}</label></td>
+                                </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+       </div>
+
+       <div class=" col-md-offset-3 col-sm-8 col-xs-12">
+            <!-- small box -->
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">                      
+                        <i class="ion ion-android-calendar"></i> <strong>Articulos En Trámite</strong></h3>
+                </div>
+                <div class="box-body">
+                <table class="table table-stripped ">
+                    <thead>
+                        <th class="col-xs-1">
+                            #
+                        </th>
+                        <th class="col-xs-10">
+                            Articulo
+                        </th>
+                         <th class="col-xs-1">
+                            Fecha vto.
+                        </th>
+                    </thead>
+                    <tbody>
+                        @foreach($enTramite as $tr)
+                                <tr>
+                                    <td>{{$tr->id}}</td>
+                                    <td><a href="{{route('admin.items.edit',$tr->id)}}"><strong>{{$tr->Models->Brands->name}}</strong>  {{$tr->Models->name}}</a></td>
+                                    <td>{{$tr->f_vencimiento}}</td>
+                                    <td><label class="label label-default">{{ config('status.items.' . $tr->status) }}</label></td>
+                                </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
             </div>
        </div>
 

@@ -1,7 +1,7 @@
 <?php
  namespace App\Entities\Admin;
 
-
+ use Mail;
  use App\Entities\Entity;
  use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
      protected $table = 'items';
 
-     protected $fillable = ['nombre','models_id','status','f_emision','f_vencimiento','cod_proveedor','n_serie','emitido_por','n_certificado','capacidad','items_capacidad_tipo_id','company_id','obs'];
+     protected $fillable = ['nombre','models_id','status','f_emision','f_vencimiento','cod_proveedor','n_serie','emitido_por','n_certificado','capacidad','items_capacidad_tipo_id','company_id','obs','sent'];
 
      protected $section = 'items';
      
@@ -60,22 +60,50 @@ use Carbon\Carbon;
 
      public function getFEmisionAttribute($value)
      {
+        if(is_null($value))
+        {
+           return null;            
+        }
+        else
+        {
          return date('d-m-Y',strtotime($value));
+        }
      }
 
      public function setFEmisionAttribute($value)
      {
-         $this->attributes['f_emision'] = date('Y-m-d',strtotime($value));
+        if($value == "")
+        {
+            $this->attributes['f_emision'] = null;             
+        }
+        else
+        {
+             $this->attributes['f_emision'] = date('Y-m-d',strtotime($value));
+        }
      }
 
      public function getFVencimientoAttribute($value)
      {
+            if(is_null($value))
+        {
+           return null;            
+        }
+            else
+        {
          return date('d-m-Y',strtotime($value));
+        }
      }
 
      public function setFVencimientoAttribute($value)
      {
+        if($value == "")
+        {
+            $this->attributes['f_vencimiento'] = null;             
+        }
+        else
+        {
          $this->attributes['f_vencimiento'] = date('Y-m-d',strtotime($value));
+        }  
      }
 
 
@@ -91,6 +119,9 @@ use Carbon\Carbon;
         $difference =  $now->diffInDays($created,false);
 
 
+        if($vto == "")
+            return false;
+
         if(($difference + 1 ) <= 0  )
         {
              return false;
@@ -99,6 +130,16 @@ use Carbon\Carbon;
         {   
             if(($difference+1) <= $dias_ant)
             {
+                    if(!$this->sent){
+                            Mail::send('mails.vto', ['id' => $this->id],
+                             function ($m)  {
+                                $m->from('help@coders.com.ar', 'coders.com.ar');
+                                $m->to('armamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                $this->sent = 1;
+                                $this->save();
+                                });
+                        }
+
                 return true;
             }
 
@@ -106,6 +147,7 @@ use Carbon\Carbon;
         }
         
      }
+
  }
 
 

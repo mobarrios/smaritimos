@@ -169,18 +169,18 @@ abstract class BaseRepo
             $model = $model->where($colum, $value);
 
 
-        if (config('models.' . $section . '.is_brancheable'))
-        {
+        // if (config('models.' . $section . '.is_brancheable'))
+        // {
 
-            return $model->whereHas('Brancheables', function ($q)
-            {
-                $q->whereIn('branches_id', Auth::user()->branches_id);
-            });
+        //     return $model->whereHas('Brancheables', function ($q)
+        //     {
+        //         $q->whereIn('branches_id', Auth::user()->branches_id);
+        //     });
 
-        } else
-        {
+        // } else
+        // {
             return $model;
-        }
+        //}
     }
 
     public function ListsData($data, $id)
