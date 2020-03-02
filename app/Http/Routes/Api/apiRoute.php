@@ -70,7 +70,7 @@ Route::group(['prefix' => 'articulos'], function(){
     });
 
 
-     Route::get('byBranches',function(){
+     Route::get('sucursales',function(){
 
         $result = [];
 
@@ -83,20 +83,25 @@ Route::group(['prefix' => 'articulos'], function(){
          ->join('models','models.id','=','items.models_id')
          ->join('brands','brands.id','=','models.brands_id')
          ->select('items.id','brands.name as brand','models.name as model','items.f_vencimiento','items.f_emision','items.n_serie','items.obs', 'branches.name as deposito')
+         ->orderBy('brands.id')
          ->get();
+
 
         foreach ($items as $item)
 
             array_push($result,
                 [
-                    'id' => $item->id,
-                    'marca'=> $item->brand,
-                    'modelo'=> $item->model,
-                    'deposito' => $item->deposito,
-                    'f_vencimiento' => $item->f_vencimiento,
-                    'f_emision' => $item->f_emision,
-                    'n_serie' => $item->n_serie,
-                    'obs' => $item->obs
+                     $item->deposito => 
+                     [
+                        'id' => $item->id,
+                        'marca'=> $item->brand,
+                        'modelo'=> $item->model,
+                        'deposito' => $item->deposito,
+                        'f_vencimiento' => $item->f_vencimiento,
+                        'f_emision' => $item->f_emision,
+                        'n_serie' => $item->n_serie,
+                        'obs' => $item->obs
+                    ]
 
                 ]);
 
@@ -207,6 +212,17 @@ Route::group(['prefix' => 'usuarios'], function () {
     
 
         return response()->json($result,200);
+    });
+
+    Route::post('login',function(\Illuminate\Http\Request $request){
+        
+        $result = ['name' => $request->name];
+
+        if(!Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+                return response()->json('false',200);
+        else
+                return response()->json(Auth::user()->remember_token,200);
+
     });
 });
 
