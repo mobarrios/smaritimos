@@ -91,8 +91,7 @@ Route::group(['prefix' => 'articulos'], function(){
 
             array_push($result,
                 [
-                     $item->deposito => 
-                     [
+                 
                         'id' => $item->id,
                         'marca'=> $item->brand,
                         'modelo'=> $item->model,
@@ -101,7 +100,7 @@ Route::group(['prefix' => 'articulos'], function(){
                         'f_emision' => $item->f_emision,
                         'n_serie' => $item->n_serie,
                         'obs' => $item->obs
-                    ]
+                    
 
                 ]);
 
