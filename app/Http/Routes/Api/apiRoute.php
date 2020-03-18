@@ -2,6 +2,19 @@
 
 Route::group(['prefix' => 'articulos'], function(){
 
+    Route::post('actualizar',function(\Illuminate\Http\Request $request){
+
+         $item = \App\Entities\Admin\Items::find($request->id);
+
+         $item->obs         = $request->obs;
+         $item->status      = $request->status;
+
+         $item->save();
+
+         dd($item);
+
+    });
+
     Route::get('all',function(){
 
         $result = [];
