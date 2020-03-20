@@ -59,7 +59,7 @@
 
         <div class="login-logo texto-red">
             <i class="fa fa-code"></i>
-            Articulo por Vencerce!
+            Articulo por Vencerse!
         </div>
         <hr>
         <p class="login-box-msg">

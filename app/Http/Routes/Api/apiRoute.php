@@ -11,7 +11,8 @@ Route::group(['prefix' => 'articulos'], function(){
 
          $item->save();
 
-         dd($item);
+         return response()->json(true,200);
+
 
     });
 
@@ -30,7 +31,7 @@ Route::group(['prefix' => 'articulos'], function(){
                     'modelo'=> $item->Models->name,
                     'f_venciemiento' => $item->f_vencimiento,
                 ]);
-
+        
         return response()->json($result,200);
 
     });

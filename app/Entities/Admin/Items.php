@@ -133,8 +133,8 @@ use Carbon\Carbon;
                     if(!$this->sent){
                             Mail::send('mails.vto', ['id' => $this->id],
                              function ($m)  {
-                                $m->from('help@coders.com.ar', 'coders.com.ar');
-                                $m->to('armamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
+                                $m->to('esteban@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
                                 $this->sent = 1;
                                 $this->save();
                                 });
