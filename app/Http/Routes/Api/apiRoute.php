@@ -2,14 +2,38 @@
 
 Route::group(['prefix' => 'articulos'], function(){
 
-    Route::post('actualizar',function(\Illuminate\Http\Request $request){
+    Route::get('estados',function(){
 
-         $item = \App\Entities\Admin\Items::find($request->id);
+        $result = [config('status.items')];
 
-         $item->obs         = $request->obs;
-         $item->status      = $request->status;
+        return response()->json($result,200);
 
-         $item->save();
+    });
+
+    Route::post('actualizar',function(\Illuminate\Http\Request $request)
+    {
+
+         $datas = $request->data;
+
+         foreach($datas as $data )
+         {
+           $obs         =  $data['obs'];
+           $status      =  $data['status'];
+           $id          =  $data['id'];
+           $deposito_nuevo =  $data['deposito_id'];
+
+           $item        = \App\Entities\Admin\Items::find($id);
+
+           $item->obs   = $obs;
+           $item->status = $status;
+           $item->save();
+
+           // if($deposito_nuevo != null)
+           // {
+           //   $item->Brancheables()->
+           // }
+
+         }
 
          return response()->json(true,200);
 
