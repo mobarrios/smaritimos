@@ -51,9 +51,9 @@
         @endforeach 
 
         <h2>Artículos por vencer.</h2> 
-       @foreach($porVencer as $data) 
+       @foreach($porVencer as $data1) 
         <h4>
-            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">#{{$data->id}} / <strong>{{$data->Models->Brands->name}}</strong>   / {{$data->Models->name}}    /  vto : {{$data->f_vencimiento}} </a>
+            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data1->id}}">#{{$data1->id}} / <strong>{{$data1->Models->Brands->name}}</strong>   / {{$data1->Models->name}}    /  vto : {{$data1->f_vencimiento}} </a>
         </h4>
         @endforeach 
         
