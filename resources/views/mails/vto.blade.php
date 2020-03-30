@@ -40,18 +40,20 @@
         </div>
        <small> Ingrese a este link para para solucionar el problema.</small>
        <br>
-        <h2>Un Artículo se esta por vencer.</h2> 
-       @foreach($porVencer as $data) 
-        <h4>
-            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">#{{$data->id}} / <strong>{{$data->Models->Brands->name}}</strong>   / {{$data->Models->name}}    /  vto : {{$data->f_vencimiento}} </a>
-        </h4>
-        @endforeach 
+        
         
 
-         <h2>Un Artículo Vencidos.</h2> 
+         <h2>Artículos Vencidos.</h2> 
        @foreach($vencidos as $data) 
         <h4>
             <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">  #{{$data->id}} / <strong>{{$data->Models->Brands->name}}</strong>   / {{$data->Models->name}}    /  vto : {{$data->f_vencimiento}}</a>
+        </h4>
+        @endforeach 
+
+        <h2>Artículos por vencer.</h2> 
+       @foreach($porVencer as $data) 
+        <h4>
+            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">#{{$data->id}} / <strong>{{$data->Models->Brands->name}}</strong>   / {{$data->Models->name}}    /  vto : {{$data->f_vencimiento}} </a>
         </h4>
         @endforeach 
         
