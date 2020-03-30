@@ -43,14 +43,14 @@
          <h2>Artículos Vencidos.</h2> 
        @foreach($vencidos as $data) 
         <h4>
-            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">  #{{$data->id}}  <strong>{{$data->Models->Brands->name or ''}}   {{$data->Models->name or ''}}   </strong>  /  vto : <strong>{{$data->f_vencimiento}}</strong> / deposito : <strong>{{$data->Brancheables()->first()->branches->name or ''}}</strong></a>
+            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">  #{{$data->id}}  <strong>{{$data->Models->Brands->name or ''}}   {{$data->Models->name or ''}}   </strong>  / deposito : <strong>{{$data->Brancheables()->first()->branches->name or ''}}</strong>/  vto : <strong>{{$data->f_vencimiento}}</strong> </a>
         </h4>
         @endforeach 
 
         <h2>Artículos por vencer.</h2> 
        @foreach($porVencer as $data1) 
         <h4>
-            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data1->id}}">#{{$data1->id}}  <strong>{{$data1->Models->Brands->name or ''}}    {{$data1->Models->name or ''}}  </strong>  /  vto : <strong>{{$data1->f_vencimiento}}</strong> / deposito : <strong>{{$data1->Brancheables()->first()->branches->name or  ''}} </strong></a>
+            <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data1->id}}">#{{$data1->id}}  <strong>{{$data1->Models->Brands->name or ''}}    {{$data1->Models->name or ''}}  </strong>  / deposito : <strong>{{$data1->Brancheables()->first()->branches->name or  ''}} </strong>/  vto : <strong>{{$data1->f_vencimiento}}</strong> </a>
         </h4>
         @endforeach 
         
