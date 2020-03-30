@@ -178,4 +178,19 @@ class ItemsRepo extends BaseRepo
         return $model;
     }
 
+
+    public function ItemsVencidos()
+    {
+        $items =  $this->model->where('status','!=',7)->get();
+         $res = [];
+
+        foreach ($items as $item) {
+           if($item->isVencido){
+            array_push($res, $item);
+           }
+        }
+
+        return $res;
+    }
+
 }

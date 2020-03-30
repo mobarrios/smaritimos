@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/consulta',function(){
-
-return view('consultass');
-});
-
 
 // API para ecommerce
 Route::group(['middleware'=>'cors','prefix'=>'api'],function(){

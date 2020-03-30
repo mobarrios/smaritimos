@@ -1,7 +1,6 @@
 <?php
  namespace App\Entities\Admin;
 
- use Mail;
  use App\Entities\Entity;
  use Illuminate\Database\Eloquent\Model;
 
@@ -130,15 +129,15 @@ use Carbon\Carbon;
         {   
             if(($difference+1) <= $dias_ant)
             {
-                    if(!$this->sent){
-                            Mail::send('mails.vto', ['id' => $this->id],
-                             function ($m)  {
-                                $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
-                                $m->to('esteban@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                    //if(!$this->sent){
+                    //        Mail::send('mails.vto', ['id' => $this->id],
+                    //         function ($m)  {
+                    //            $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
+                    //            $m->to('esteban@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
                                 $this->sent = 1;
                                 $this->save();
-                                });
-                        }
+                     //           });
+                        //}
 
                 return true;
             }

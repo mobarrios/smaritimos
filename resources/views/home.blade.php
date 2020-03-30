@@ -39,6 +39,9 @@
                 <div class="box-header">
                     <h3 class="box-title">                      
                         <i class="ion ion-android-calendar"></i> <strong>Proximos Vencimientos</strong></h3>
+
+                                        <a  href="{{route('admin.items.sendMail')}}" class=" pull-right btn btn-xs btn-default"><span class="fa fa-envelope"></span> Enviar Mail  </a>
+
                 </div>
                 <div class="box-body">
                 <table class="table table-stripped ">
@@ -68,6 +71,7 @@
                     
                 </table>
                 </div>
+                
             </div>
        </div>
 

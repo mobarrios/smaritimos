@@ -18,6 +18,9 @@ use League\Flysystem\Config;
 use App\Entities\Configs\Company;
 use App\Entities\Configs\Branches;
 
+ use Mail;
+
+
 
 
 class ItemsController extends Controller
@@ -145,6 +148,21 @@ class ItemsController extends Controller
             return response()->json(true);
         else
             return response()->json(false);
+    }
+
+    //send mail
+    public function sendMail(){
+
+            $pv = $this->repo->ItemsVencidos();
+            $v  =  Items::where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
+
+
+            Mail::send('mails.vto', [ 'porVencer' => $pv , 'vencidos' => $v],function ($m){
+                          $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
+                          $m->to('esteban@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+            });
+
+     return redirect()->back();
     }
 
 
