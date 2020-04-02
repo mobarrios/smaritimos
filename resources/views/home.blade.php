@@ -49,11 +49,17 @@
                         <th class="col-xs-1" >
                             #
                         </th>
-                        <th class="col-xs-10" >
+                        <th class="col-xs-7" >
                             Articulo
                         </th>
                          <th class="col-xs-1" >
                             Fecha vto.
+                        </th>
+                         <th class="col-xs-2" >
+                            Depo.
+                        </th>
+                        <th class="col-xs-1" >
+                            Estado
                         </th>
                     </thead>
                     <tbody>
@@ -63,6 +69,7 @@
                                     <td >{{$item->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
                                     <td>{{$item->f_vencimiento}}</td>
+                                    <td>{{$item->Brancheables()->first()->branches->name}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
                                 </tr>
                             @endif
@@ -84,15 +91,21 @@
                 </div>
                 <div class="box-body">
                 <table class="table table-stripped ">
-                    <thead>
-                        <th class="col-xs-1">
+                     <thead>
+                        <th class="col-xs-1" >
                             #
                         </th>
-                        <th class="col-xs-10">
+                        <th class="col-xs-7" >
                             Articulo
                         </th>
-                         <th class="col-xs-1">
+                         <th class="col-xs-1" >
                             Fecha vto.
+                        </th>
+                         <th class="col-xs-2" >
+                            Depo.
+                        </th>
+                        <th class="col-xs-1" >
+                            Estado
                         </th>
                     </thead>
                     <tbody>
@@ -101,6 +114,7 @@
                                     <td>{{$ant->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$ant->id)}}"><strong>{{$ant->Models->Brands->name}}</strong>  {{$ant->Models->name}}</a></td>
                                     <td>{{$ant->f_vencimiento}}</td>
+                                    <td>{{$ant->Brancheables()->first()->branches->name}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $ant->status) }}</label></td>
                                 </tr>
                         @endforeach
@@ -119,15 +133,21 @@
                 </div>
                 <div class="box-body">
                 <table class="table table-stripped ">
-                    <thead>
-                        <th class="col-xs-1">
+                     <thead>
+                        <th class="col-xs-1" >
                             #
                         </th>
-                        <th class="col-xs-10">
+                        <th class="col-xs-7" >
                             Articulo
                         </th>
-                         <th class="col-xs-1">
+                         <th class="col-xs-1" >
                             Fecha vto.
+                        </th>
+                         <th class="col-xs-2" >
+                            Depo.
+                        </th>
+                        <th class="col-xs-1" >
+                            Estado
                         </th>
                     </thead>
                     <tbody>
@@ -136,6 +156,7 @@
                                     <td>{{$tr->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$tr->id)}}"><strong>{{$tr->Models->Brands->name}}</strong>  {{$tr->Models->name}}</a></td>
                                     <td>{{$tr->f_vencimiento}}</td>
+                                    <td>{{$tr->Brancheables()->first()->branches->name}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $tr->status) }}</label></td>
                                 </tr>
                         @endforeach
