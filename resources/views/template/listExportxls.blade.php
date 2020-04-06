@@ -15,7 +15,6 @@
     <table>
         <thead>
             <tr>
-
                 @foreach($export as $ind => $val)
                     <th style="padding:10px !important;">{!! $ind !!}</th>
                 @endforeach
@@ -27,9 +26,26 @@
                     @foreach($export as $att => $val)
                         <td style="padding:2px;">
                             @if(is_array($val))
-                                {!! $datos->$val[0] ? $datos->$val[0]->$val[1] : '' !!}
+                             <?php 
+                                $d = $val[0];
+                                $r = $val[1];
+                             ?>
+                                {!! $datos->$d ? $datos->$d->$r : '' !!}
+                                
                             @else
-                                {!! $datos->$val !!}
+                                @if($val == 'status')
+
+                                    {!! config('status.items.' . $datos->$val) !!}
+
+                              {{--   @elseif($val == 'id')
+
+                                    
+                                    'dadsad' --}}
+                                @else
+
+                                    {!! $datos->$val !!}
+
+                                @endif
                             @endif
                         </td>
                     @endforeach

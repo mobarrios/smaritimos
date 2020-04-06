@@ -61,8 +61,15 @@ return [
 
 
     'export' => [
-        'Nombre' => 'name',
-        'Estado' => 'status',
-        'Modelo' => ['models', 'name'],
+         'COD' => 'id',
+         'NSerie' => 'n_serie',
+         'Nombre' => 'nombre',
+         'Estado' => 'status',
+         'Modelo' => ['models', 'name'],
+         'FEmision' => 'f_emision',
+         'FVto' => 'f_vencimiento',
+         'Obs' => 'obs',
+         'Deposito' => 'branches',
+         
     ]
 ];
