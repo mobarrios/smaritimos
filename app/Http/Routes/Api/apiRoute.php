@@ -120,7 +120,7 @@ Route::group(['prefix' => 'articulos'], function(){
          ->join('branches','branches.id','=','brancheables.branches_id')
          ->join('models','models.id','=','items.models_id')
          ->join('brands','brands.id','=','models.brands_id')
-         ->select('items.status','items.id','brands.name as brand','models.name as model','items.f_vencimiento','items.f_emision','items.n_serie','items.obs', 'branches.name as deposito')
+         ->select('items.status','items.id','brands.name as brand','models.name as model','items.f_vencimiento','items.f_emision','items.n_serie','items.obs', 'branches.id as deposito')
          ->orderBy('brands.id')
          ->get();
 
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'articulos'], function(){
                         'id' => $item->id,
                         'marca'=> $item->brand,
                         'modelo'=> $item->model,
-                        'deposito' => $item->deposito,
+                        'deposito_id' => $item->deposito,
                         'f_vencimiento' => $item->f_vencimiento,
                         'f_emision' => $item->f_emision,
                         'n_serie' => $item->n_serie,
