@@ -16,6 +16,11 @@
               {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
 
+            <div class="col-xs-12 form-group">
+              {!! Form::label('Super-Categoría') !!}
+              {!! Form::select('main',[ 1 => 'Si' , 0 => 'No' ],null, ['class'=>'form-control select2']) !!}
+            </div>
+
 
 
 

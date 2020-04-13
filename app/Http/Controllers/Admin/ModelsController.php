@@ -27,7 +27,8 @@ class ModelsController extends Controller
         // data
         $this->data['brands'] = $brandsRepo->ListsData('name','id');
         $this->data['providers'] = $providersRepo->ListsData('name','id');
-        $this->data['categories'] = $categoriesRepo->ListsData('name','id');
+        $this->data['mainCategories'] = $categoriesRepo->getModel()->where('main',1)->lists('name','id');
+        $this->data['categories'] = $categoriesRepo->getModel()->where('main',0)->lists('name','id');
         $this->data['status'] = config('status.models');
         $this->data['types'] = config('models.models.types');
 
@@ -70,6 +71,8 @@ class ModelsController extends Controller
     {
         //validar los campos
         $this->validate($this->request,config('models.'.$this->section.'.validationsUpdate'));
+
+
 
         $id = $this->route->getParameter('id');
         //edita a traves del repo

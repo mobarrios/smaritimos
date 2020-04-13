@@ -23,17 +23,23 @@
         {{--{!! Form::label('Tipo') !!}--}}
         {{--{!! Form::select('types_id', $types , null ,['class'=>'select2 form-control' ]) !!}--}}
     {{--</div>--}}
+
+        <div class="col-xs-6 form-group">
+        {!! Form::label('SuperCategoria') !!}
+        {!! Form::select('categories_id[]', $mainCategories , null ,['class'=>'select2 form-control ']) !!}
+    </div>
+
     <div class="col-xs-6 ">
         {!! Form::label('Categorias') !!}
-        @if(isset($models)) 
-            {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
-        @else
+{{--         @if(isset($models)) 
+ --}}            {!! Form::select('categories_id[]', $categories , null ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
+       {{--  @else
             {!! Form::select('categories_id[]', $categories , [1,2] ,['class'=>'selectMulti form-control' ,'multiple'=>'']) !!}
-        @endif
+        @endif --}}
     </div>
 
 
-    <div class="col-xs-2 form-group">
+    <div class="col-xs-12 form-group">
         {!! Form::label('Dias Aviso Vencimiento') !!}
         {!! Form::text('dias_vto', null, ['class'=>'form-control']) !!}
     </div>

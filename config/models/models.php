@@ -48,7 +48,6 @@ return [
     'validationsStore' => [
 
         'name' => 'required',
-        //'types_id' => 'required',
         'categories_id' => 'required',
         //'providers_id' => 'required',
 
@@ -57,7 +56,6 @@ return [
     'validationsUpdate' => [
 
         'name' => 'required',
-       // 'types_id' => 'required',
         'categories_id' => 'required',
         //x'providers_id' => 'required',
 

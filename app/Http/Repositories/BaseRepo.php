@@ -31,7 +31,6 @@ abstract class BaseRepo
     {
 
         $model = new $this->model();
-
         if(is_object($data))
             $model->fill($data->all());
         else
@@ -77,6 +76,7 @@ abstract class BaseRepo
 
     public function update($id, $data)
     {
+
         $model = $this->model->find($id);
         
         if(is_object($data))
