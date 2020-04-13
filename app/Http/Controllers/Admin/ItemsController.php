@@ -42,8 +42,8 @@ class ItemsController extends Controller
 
         $this->data['brands']       = $brandsRepo->getAllWithModels();
 
-        $this->data['estados']      =  config('status.items');
-        $this->data['capacidad_tipos'] =    [ 1 => 'Lts',2 => 'Kgs', 3 =>'Cm3', 4=>'Unidad', 5 => 'Personas'] ;
+        $this->data['estados']          =  config('status.items');
+        $this->data['capacidad_tipos']  = config('status.capacidades_tipo');
 
         $this->data['companies'] = Company::lists('razon_social','id');
 

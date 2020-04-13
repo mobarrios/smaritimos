@@ -3,6 +3,7 @@
 
  use App\Entities\Entity;
  use Illuminate\Database\Eloquent\Model;
+ use App\Entities\Configs\Company;
 
 use Carbon\Carbon;
 
@@ -145,6 +146,11 @@ use Carbon\Carbon;
              
         }
         
+     }
+
+     public function Company(){
+
+        return $this->belongsTo(Company::class);
      }
 
  }

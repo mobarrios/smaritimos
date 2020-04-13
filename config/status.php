@@ -46,7 +46,16 @@ return [
                 1 => 'Ingresado',
                 2 => 'Utilizado',
                 3 => 'Cancelado',
+        ],
+
+         'capacidades_tipo' => [
+                1 => 'Lts',
+                2 => 'Kgs',
+                3 => 'Cm3',
+                4 => 'Unidad',
+                5 => 'Personas'
         ]
+
 
 
 

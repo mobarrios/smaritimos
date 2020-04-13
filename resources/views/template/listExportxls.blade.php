@@ -37,10 +37,10 @@
 
                                     {!! config('status.items.' . $datos->$val) !!}
 
-                              {{--   @elseif($val == 'id')
+                                @elseif($val == 'items_capacidad_tipo_id')
 
-                                    
-                                    'dadsad' --}}
+                                    {!! config('status.capacidades_tipo.' . $datos->$val) !!}
+
                                 @else
 
                                     {!! $datos->$val !!}

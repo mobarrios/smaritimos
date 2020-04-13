@@ -73,7 +73,7 @@ class AuthController extends Controller
          // Reviso que el usuario exista y tenga acceso
          //$user = $this->usersRepo->searchByEmail($request->get('email'),$request->get('password'));
 
-        if (!Auth::attempt(['name' => $request->user_name, 'password' => $request->password], $request->remember))
+        if (!Auth::attempt(['user_name' => $request->user_name, 'password' => $request->password], $request->remember))
            // if(empty($user) || is_null($user))
                 return redirect()->back()->withInput()->withErrors(['Usuario Inválido!']);
            // else

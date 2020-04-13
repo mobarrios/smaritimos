@@ -33,7 +33,7 @@ return [
 
     //polymorphic
     'is_logueable'      => true,
-    'is_imageable'      => false,
+    'is_imageable'      => true,
     'is_brancheable'    => true,
     
 
@@ -63,13 +63,15 @@ return [
     'export' => [
          'COD' => 'id',
          'NSerie' => 'n_serie',
-         'Nombre' => 'nombre',
          'Estado' => 'status',
          'Modelo' => ['models', 'name'],
          'FEmision' => 'f_emision',
          'FVto' => 'f_vencimiento',
+         'Cap.' => 'capacidad',
+         'Tipo Cap.' => 'items_capacidad_tipo_id',
          'Obs' => 'obs',
          'Deposito' => 'branches',
-         
+         'Empresa' => ['Company','razon_social']
+
     ]
 ];
