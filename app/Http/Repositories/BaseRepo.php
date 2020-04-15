@@ -335,7 +335,7 @@ abstract class BaseRepo
     public function createImageables($model, $image)
     {
         if ($model->images)
-            $model->images()->delete();
+           // $model->images()->delete();
 
         $model->images()->create(['path' => $image]);
     }

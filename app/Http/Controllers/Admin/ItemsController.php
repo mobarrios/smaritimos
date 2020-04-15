@@ -16,6 +16,7 @@ use League\Flysystem\Config;
 
 use App\Entities\Configs\Company;
 use App\Entities\Configs\Branches;
+use Illuminate\Support\Facades\DB;
 
  use Mail;
 
@@ -164,6 +165,19 @@ class ItemsController extends Controller
             });
 
      return redirect()->back()->withErrors(['E-mail enviado Correctamente']);
+    }
+
+
+    public function deleteImages(){
+
+                $id = $this->route->getParameter('id');
+                $db = DB::table('images')->where('id',$id)->delete();
+
+
+
+     return redirect()->back()->withErrors(['Imagen Eliminada Correctamente']);
+
+
     }
 
 

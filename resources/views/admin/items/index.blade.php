@@ -14,6 +14,14 @@
                 <td>N/S : {{$model->n_serie}}</td>
                 <td>{{$model->Models->Brands->name or '' }} <strong>{{$model->Models->name or '' }}</strong><br></td>
                 <td>
+                   @foreach($model->Models->Categories as $cat) 
+
+                   <span class="label label-success">{{$cat->name}}</span>
+
+                    @endforeach 
+
+                </td>
+                <td>
                     @foreach($model->Brancheables as $branch)
                        <label class="label label-default"> {{$branch->branches->name}} </label>
                     @endforeach

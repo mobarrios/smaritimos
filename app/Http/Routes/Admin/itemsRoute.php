@@ -18,6 +18,9 @@ Route::group(['prefix'=>'items'],function(){
 
         Route::get('/sendMail',           ['as'=>'admin.items.sendMail','uses'=>'Admin\ItemsController@sendMail']);
 
+        Route::get('/deleteImages/{id?}',    ['middleware'=>'permission:'.$section.'.destroy','as'=>'admin.items.deleteImages','uses'=>'Admin\ItemsController@deleteImages']);
+
+
 
 });
 

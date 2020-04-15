@@ -28,10 +28,6 @@
                 </select>
             </div>
 
-             <div class="col-xs-12 form-group">
-                {!! Form::label('Imagen') !!}
-                {!! Form::file('image', ['class'=>'form-control']) !!}
-            </div>
 
             <div class="col-xs-6 form-group">
                 {!! Form::label('N. Serie / Identificación') !!}
@@ -104,6 +100,33 @@
 
         </div>
 
+         <div class="col-xs-6 form-group">
+                {!! Form::label('Imagen') !!}
+                {!! Form::file('image', ['class'=>'form-control']) !!}
+
+                <table class="table">
+                    <thead>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        @foreach($models->Images as $im)
+                            <tr>
+                                <td>{{$im->id}}</td>
+                                <td class="col-xs-2">
+                                    <div class="image">
+                                        <a target="_blank" href="{{$im->path}}">
+                                            <img src="{{$im->path}}" class="img-rounded" alt="Imagen" width="120px">
+                                        </a>
+                                    </div>
+                                </td> 
+                                <td>{{$im->name}}</td>
+                                <td class="col-xs-1"><a class="btn btn-xs btn-danger" href="{{route('admin.items.deleteImages',$im->id)}}"><span class="fa fa-trash"></span></a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         @if(isset($models))
         <div class="col-xs-6">
