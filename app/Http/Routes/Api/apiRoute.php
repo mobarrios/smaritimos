@@ -259,7 +259,7 @@ Route::group(['prefix' => 'usuarios'], function () {
         if(!Auth::attempt(['email' => $request->email, 'password' => $request->password]))
                 return response()->json('false',200);
         else
-                return response()->json(Auth::user()->remember_token,200);
+                return response()->json(Auth::user() ,200);
 
     });
 });
