@@ -110,6 +110,7 @@
                         <th></th>
                     </thead>
                     <tbody>
+                        @if(isset($models))
                         @foreach($models->Images as $im)
                             <tr>
                                 <td>{{$im->id}}</td>
@@ -124,6 +125,7 @@
                                 <td class="col-xs-1"><a class="btn btn-xs btn-danger" href="{{route('admin.items.deleteImages',$im->id)}}"><span class="fa fa-trash"></span></a></td>
                             </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
