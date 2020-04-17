@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-sm-8 col-xs-12">
+        <div class="col-sm-9 col-xs-12">
             <!-- small box -->
             
             <div class="box box-danger">
@@ -82,7 +82,7 @@
             </div>
        </div>
 
-        <div class="col-sm-8 col-xs-12">
+        <div class="col-sm-9 col-xs-12">
             <!-- small box -->
             <div class="box box-warning">
                 <div class="box-header">
@@ -124,7 +124,7 @@
             </div>
        </div>
 
-       <div class=" col-md-offset-3 col-sm-8 col-xs-12">
+       <div class=" col-md-offset-3 col-sm-9 col-xs-12">
             <!-- small box -->
             <div class="box box-success">
                 <div class="box-header">
