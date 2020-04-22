@@ -243,7 +243,7 @@ abstract class BaseRepo
 
             }
 
-
+            $q->where('deleted_at','=',null);
             /*
             if(is_array($k))
             {
