@@ -122,7 +122,11 @@
                                     </div>
                                 </td> 
                                 <td>{{$im->name}}</td>
-                                <td class="col-xs-1"><a class="btn btn-xs btn-danger" href="{{route('admin.items.deleteImages',$im->id)}}"><span class="fa fa-trash"></span></a></td>
+                                <td class="col-xs-1">
+                                    @permission('items.delete.image')
+                                    <a class="btn btn-xs btn-danger" href="{{route('admin.items.deleteImages',$im->id)}}"><span class="fa fa-trash"></span></a>
+                                    @endpermission
+                                </td>
                             </tr>
                         @endforeach
                         @endif

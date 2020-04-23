@@ -16,7 +16,7 @@ Route::group(['prefix'=>'items'],function(){
         Route::get('/pdf',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.pdf','uses'=>'Utilities\UtilitiesController@exportListToPdf']);
         Route::get('/qrItems/{id?}',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.qr','uses'=>'Utilities\UtilitiesController@qrItems']);
 
-        Route::get('/sendMail',           ['as'=>'admin.items.sendMail','uses'=>'Admin\ItemsController@sendMail']);
+        Route::get('/sendMail',           ['middleware'=>'permission:'.$section.'.sendmail', 'as'=>'admin.items.sendMail','uses'=>'Admin\ItemsController@sendMail']);
 
         Route::get('/deleteImages/{id?}',    ['middleware'=>'permission:'.$section.'.destroy','as'=>'admin.items.deleteImages','uses'=>'Admin\ItemsController@deleteImages']);
 

@@ -159,7 +159,7 @@ class ItemsController extends Controller
 
             Mail::send('mails.vto', [ 'porVencer' => $pv , 'vencidos' => $v],function ($m){
                           $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
-                           $m->to('armamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                           $m->to('vencimientosarmamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
                           //   $m->to('manuelobarrios@gmail.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
 
             });
