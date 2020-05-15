@@ -9,7 +9,7 @@
 
      protected $table = 'categories';
 
-     protected $fillable = ['name','main'];
+     protected $fillable = ['name','main','mail'];
      protected $section = 'categories';
 
 

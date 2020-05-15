@@ -16,9 +16,13 @@
               {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="col-xs-12 form-group">
+            <div class="col-xs-6 form-group">
               {!! Form::label('Super-Categoría') !!}
-              {!! Form::select('main',[ 1 => 'Si' , 0 => 'No' ],null, ['class'=>'form-control select2']) !!}
+              {!! Form::select('main',[  0 => 'No', 1 => 'Si'  ],null, ['class'=>'form-control select2']) !!}
+            </div>
+            <div class="col-xs-6 form-group">
+              {!! Form::label('Super-Categoría Email') !!}
+              {!! Form::text('mail',null, ['class'=>'form-control ']) !!}
             </div>
 
 

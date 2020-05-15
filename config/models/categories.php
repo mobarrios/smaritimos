@@ -50,14 +50,14 @@ return [
     'validationsStore' => [
 
             'name'          => 'required',
-           // 'address'     => 'required',
+            'mail'     => 'required_if:main,1',
 
     ],
 
     'validationsUpdate' => [
 
             'name'          => 'required',
-            //'address'     => 'required',
+            'mail'     => 'required_if:main,1',
 
     ],
 
