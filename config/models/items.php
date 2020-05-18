@@ -73,5 +73,22 @@ return [
          'Deposito' => 'branches',
          'Empresa' => ['Company','razon_social']
 
+    ],
+
+    'exportPdf' => [
+         'COD' => 'id',
+         //'NSerie' => 'n_serie',
+         //'Estado' => 'status',
+         'Articulo' => ['models', 'name'],
+         //'FEmision' => 'f_emision',
+         'FVto' => 'f_vencimiento',
+         //'Cap.' => 'capacidad',
+         //'Tipo Cap.' => 'items_capacidad_tipo_id',
+         //'Obs' => 'obs',
+         'Deposito' => 'branches',
+         //'Empresa' => ['Company','razon_social']
+         'Estado' => 'status',
+
     ]
+
 ];

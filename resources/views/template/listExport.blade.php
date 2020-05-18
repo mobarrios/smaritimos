@@ -338,11 +338,35 @@
             @foreach($model as $datos)
                 <tr>
                     @foreach($export as $att => $val)
-                        <td style="padding:2px;">
+                        {{-- td style="padding:2px;">
                             @if(is_array($val))
                                 {!! $datos->$val[0] ? $datos->$val[0]->$val[1] : '' !!}
                             @else
                                 {!! $datos->$val !!}
+                            @endif
+                        </td> --}}
+                        <td style="padding:2px;">
+                            @if(is_array($val))
+                             <?php 
+                                $d = $val[0];
+                                $r = $val[1];
+                             ?>
+                                {!! $datos->$d ? $datos->$d->$r : '' !!}
+                                
+                            @else
+                                @if($val == 'status')
+
+                                    {!! config('status.items.' . $datos->$val) !!}
+
+                                @elseif($val == 'items_capacidad_tipo_id')
+
+                                    {!! config('status.capacidades_tipo.' . $datos->$val) !!}
+
+                                @else
+
+                                    {!! $datos->$val !!}
+
+                                @endif
                             @endif
                         </td>
                     @endforeach

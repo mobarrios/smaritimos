@@ -13,7 +13,7 @@ Route::group(['prefix'=>'items'],function(){
         Route::get('/show',             ['middleware'=>'permission:'.$section.'.show','as'=>'admin.items.show','uses'=>'Admin\ItemsController@show']);
         Route::get('/index/{search?}',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.index','uses'=>'Admin\ItemsController@index']);
 
-        Route::get('/pdf',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.pdf','uses'=>'Utilities\UtilitiesController@exportListToPdf']);
+        Route::get('/pdf',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.pdf','uses'=>'Utilities\UtilitiesController@exportListToPdfItems']);
         Route::get('/qrItems/{id?}',  ['middleware'=>'permission:'.$section.'.list','as'=>'admin.items.qr','uses'=>'Utilities\UtilitiesController@qrItems']);
 
         Route::get('/sendMail',           ['middleware'=>'permission:'.$section.'.sendmail', 'as'=>'admin.items.sendMail','uses'=>'Admin\ItemsController@sendMail']);

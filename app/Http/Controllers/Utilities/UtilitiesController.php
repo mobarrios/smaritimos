@@ -45,6 +45,10 @@ class UtilitiesController extends Controller
 
     public function exportListToPdf(Route $route , PDF $pdf){
 
+       // ini_set('max_execution_time',4500);
+       // ini_set('memory_limit','128M');
+    
+
         $datos = Session::get('export');
 
         $model = (new $datos['model'])->all();
@@ -52,10 +56,28 @@ class UtilitiesController extends Controller
 
         $export = config('models.'.$model->first()->section.'.export');
 
-        $pdf->loadView('template.listExport',['model' => $model,'company' => $company,'section' => $model->first()->section,'export' => $export] );
+
+        $pdf->loadView('template.listExport',['model' => $model,'company' => $company,'section' => $model->first()->section,'export' => $export] )->setPaper('A4','landscape');
 
         return $pdf->stream();
     }
+
+     public function exportListToPdfItems(Route $route , PDF $pdf){
+
+           // ini_set('max_execution_time',4500);
+           // ini_set('memory_limit','128M');
+        
+            $datos = Session::get('export');
+
+            $model = (new $datos['model'])->all();
+            $company = Auth::user()->BranchesActive->company;
+
+            $export = config('models.'.$model->first()->section.'.exportPdf');
+
+            $pdf->loadView('template.listExport',['model' => $model,'company' => $company,'section' => $model->first()->section,'export' => $export ])->setPaper('A4','landscape');
+
+            return $pdf->stream();
+        }
 
 
     public function exportToPdf($id,Request $request,Route $route , PDF $pdf){
