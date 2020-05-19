@@ -69,7 +69,41 @@ class UtilitiesController extends Controller
         
             $datos = Session::get('export');
 
-            $model = (new $datos['model'])->all();
+            $data =  $datos['search'];
+
+
+        $q = new Items();
+
+        $q = $q->where('id', 'like', '%' . $data . '%')
+        ->orWhere('n_serie','like','%' . $data . '%')
+        ->orWhereHas('Models',function($m) use ($data)
+        {
+            $m->where('name','like','%' . $data . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Models.Brands',function($b) use ($data)
+        {
+            $b->where('name','like','%' . $data . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Brancheables.Branches',function($br) use ($data)
+        {
+            $br->where('name','like','%' . $data . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Models.Categories',function($c) use ($data)
+        {
+            $c->where('name','like','%' . $data . '%' );
+        })
+
+        ->whereNull('deleted_at');
+
+        $model = $q->get();
+            
+
+            //$model = (new $datos['model'])->all();
+
+
             $company = Auth::user()->BranchesActive->company;
 
             $export = config('models.'.$model->first()->section.'.exportPdf');

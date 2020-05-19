@@ -18,6 +18,62 @@ class ItemsRepo extends BaseRepo
     }
 
 
+// search
+    public function search($data)
+    {
+        //$columns = config('models.'.$this->model->section.'.search');
+
+        $q = $this->model->where('id', 'like', '%' . $data->search . '%')
+        ->orWhere('n_serie','like','%' . $data->search . '%')
+        ->orWhereHas('Models',function($m) use ($data)
+        {
+            $m->where('name','like','%' . $data->search . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Models.Brands',function($b) use ($data)
+        {
+            $b->where('name','like','%' . $data->search . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Brancheables.Branches',function($br) use ($data)
+        {
+            $br->where('name','like','%' . $data->search . '%' )
+            ->whereNull('deleted_at');
+        })
+        ->orWhereHas('Models.Categories',function($c) use ($data)
+        {
+            $c->where('name','like','%' . $data->search . '%' );
+        })
+
+        ->whereNull('deleted_at');
+
+
+
+        // foreach ($columns as $column => $k) {
+
+
+        //     if(is_array($k))
+        //     {
+        //         $q->orWhereHas($k[0], function ($q) use ($k, $data)
+        //         {
+        //             $q->where($k[1], 'like', '%' . $data->search . '%')
+        //             ->whereNull('deleted_at');
+        //         });
+        //         $q->whereNull('deleted_at');
+                
+
+        // } else {
+        // $q->orWhere($k, 'like', '%' . $data->search . '%')
+        // ->whereNull('deleted_at');
+
+        //     }
+        // }
+
+        return $q ;
+
+    }
+
+
     public function ItemsByModels($id)
     {
         $data = $this->model->with('Branches')->where('models_id', $id)->get();

@@ -58,16 +58,30 @@ class ItemsController extends Controller
         $this->data['activeBread'] = 'Listar';
 
         //si request de busqueda
-        if( isset($this->request->search) && !is_null($this->request->filter))
+        //
+        // if( isset($this->request->search) && !is_null($this->request->filter))
+        // {
+
+
+        if( isset($this->request->search) || $this->route->hasParameter('search'))
         {
+            $this->request['search'] = isset($this->request->search) ? $this->request->search : isset($this->request->search) ;  $model = $this->repo->search($this->request);
+            
+            $this->data['search'] = $this->request['search'];
+
+
             $model = $this->repo->search($this->request);
 
             if(is_null($model) || $model->count() == 0)
+               return redirect()->back()->withErrors(['No se encontraron datos.']);
                 //si paso la seccion
-                $model = $this->repo->listAll($this->section);
+                //$model = $this->repo->listAll($this->section);
+
         }
         else
         {
+            $this->data['search'] = null;
+
             $model  = $this->repo->listAll($this->section);
 
         }
@@ -75,7 +89,7 @@ class ItemsController extends Controller
 
 
         //guarda en session lo que se busco para exportar
-        Session::put('export', ['model' => $this->repo->getModel()->getClass(),'section' => config('models.'.$this->section.'.sectionName')]);
+        Session::put('export', ['search'=> $this->data['search'],'model' => $this->repo->getModel()->getClass(),'section' => config('models.'.$this->section.'.sectionName')]);
 
         //pagina el query
         $this->data['models'] = $model->paginate(config('models.'.$this->section.'.paginate'));

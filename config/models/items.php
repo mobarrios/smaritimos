@@ -42,7 +42,7 @@ return [
         
             'NSerie'    => 'n_serie',
             'Modelo'     => ['models','name'],
-            'Deposito'   => ['branches','name'],
+            'Deposito'   => ['brancheables.branches','name'],
     ],
 
     'validationsStore' => [
