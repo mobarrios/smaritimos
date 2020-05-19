@@ -155,7 +155,6 @@ abstract class BaseRepo
         //     });
 
         // } else {
-
             $this->model->all();
             return $this->model;
         //}

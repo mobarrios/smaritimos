@@ -76,7 +76,6 @@ class ItemsController extends Controller
                return redirect()->back()->withErrors(['No se encontraron datos.']);
                 //si paso la seccion
                 //$model = $this->repo->listAll($this->section);
-
         }
         else
         {

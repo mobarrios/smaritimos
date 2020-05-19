@@ -24,28 +24,23 @@ class ItemsRepo extends BaseRepo
         //$columns = config('models.'.$this->model->section.'.search');
 
         $q = $this->model->where('id', 'like', '%' . $data->search . '%')
-        ->orWhere('n_serie','like','%' . $data->search . '%')
-        ->orWhereHas('Models',function($m) use ($data)
+        ->where('n_serie','like','%' . $data->search . '%')
+        ->whereHas('Models',function($m) use ($data)
         {
-            $m->where('name','like','%' . $data->search . '%' )
-            ->whereNull('deleted_at');
+            $m->where('name','like','%' . $data->search . '%' );
         })
-        ->orWhereHas('Models.Brands',function($b) use ($data)
+        ->whereHas('Models.Brands',function($b) use ($data)
         {
-            $b->where('name','like','%' . $data->search . '%' )
-            ->whereNull('deleted_at');
+            $b->where('name','like','%' . $data->search . '%' );
         })
-        ->orWhereHas('Brancheables.Branches',function($br) use ($data)
+        ->whereHas('Brancheables.Branches',function($br) use ($data)
         {
-            $br->where('name','like','%' . $data->search . '%' )
-            ->whereNull('deleted_at');
+            $br->where('name','like','%' . $data->search . '%' );
         })
-        ->orWhereHas('Models.Categories',function($c) use ($data)
+        ->whereHas('Models.Categories',function($c) use ($data)
         {
             $c->where('name','like','%' . $data->search . '%' );
-        })
-
-        ->whereNull('deleted_at');
+        });
 
 
 
