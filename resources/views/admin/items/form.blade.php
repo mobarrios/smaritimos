@@ -114,13 +114,23 @@
                         @foreach($models->Images as $im)
                             <tr>
                                 <td>{{$im->id}}</td>
-                                <td class="col-xs-2">
-                                    <div class="image">
-                                        <a target="_blank" href="{{$im->path}}">
-                                            <img src="{{$im->path}}" class="img-rounded" alt="Imagen" width="120px">
-                                        </a>
-                                    </div>
-                                </td> 
+                                @if(substr($im->path, -3) == 'png' ||  substr($im->path, -3) == 'jpg' ||  substr($im->path, -3) == 'jpeg' ||  substr($im->path, -3) == 'JPG'||  substr($im->path, -3) == 'peg')
+                                    <td class="col-xs-2">
+                                        <div class="image">
+                                            <a target="_blank" href="{{$im->path}}">
+                                                <img src="{{$im->path}}" class="img-rounded" alt="Imagen" width="120px">
+                                            </a>
+                                        </div>
+                                    </td> 
+                                @else
+                                    <td class="col-xs-2">
+                                        <div class="image">
+                                            <a target="_blank" href="{{$im->path}}">
+                                               {{$im->path}}
+                                            </a>
+                                        </div>
+                                    </td>
+                                @endif
                                 <td>{{$im->name}}</td>
                                 <td class="col-xs-1">
                                     @permission('items.delete.image')

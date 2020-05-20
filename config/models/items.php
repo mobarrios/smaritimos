@@ -49,6 +49,7 @@ return [
 
             'models_id'          => 'required',
            // 'address'     => 'required',
+           'image' => 'max:2500|mimes:doc,docx,pdf,xls,xlsx,jpg,jpeg,png,JPG',
 
     ],
 
@@ -56,6 +57,9 @@ return [
 
             'models_id'          => 'required',
             //'address'     => 'required',
+            //
+
+           'image' => 'max:2500|mimes:doc,docx,pdf,xls,xlsx,jpg,jpeg,png,JPG',
 
     ],
 
