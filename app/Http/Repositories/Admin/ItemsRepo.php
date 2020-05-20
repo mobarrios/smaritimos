@@ -6,6 +6,7 @@ use App\Entities\Admin\Certificates;
 use App\Entities\Admin\Items;
 use App\Http\Repositories\BaseRepo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class ItemsRepo extends BaseRepo
@@ -24,25 +25,44 @@ class ItemsRepo extends BaseRepo
         //$columns = config('models.'.$this->model->section.'.search');
 
         $q = $this->model->where('id', 'like', '%' . $data->search . '%')
-        ->where('n_serie','like','%' . $data->search . '%')
-        ->whereHas('Models',function($m) use ($data)
+        ->orWhere('n_serie','like','%' . $data->search . '%')
+        ->orWhereHas('Models',function($m) use ($data)
         {
             $m->where('name','like','%' . $data->search . '%' );
         })
-        ->whereHas('Models.Brands',function($b) use ($data)
+        ->orWhereHas('Models.Brands',function($b) use ($data)
         {
             $b->where('name','like','%' . $data->search . '%' );
         })
-        ->whereHas('Brancheables.Branches',function($br) use ($data)
+        ->orWhereHas('Brancheables.Branches',function($br) use ($data)
         {
             $br->where('name','like','%' . $data->search . '%' );
         })
-        ->whereHas('Models.Categories',function($c) use ($data)
+         ->orWhereHas('Models.Categories',function($c) use ($data)
         {
             $c->where('name','like','%' . $data->search . '%' );
-        });
+        })
+        ;
 
-
+        // $q = DB::table('items')
+        // ->join('models','models.id','=','items.models_id')
+        // ->join('brands','brands.id','=','models.brands_id')
+        // ->join('models_categories','models_categories.models_id','=','models.id')
+        // ->join('categories','categories.id','=','models_categories.categories_id')
+        // ->join('brancheables', function ($q) {
+        //         $q->on('items.id', '=', 'brancheables.entities_id')
+        //             ->where('brancheables.entities_type', 'like', '%items%');
+        //     })
+        // ->join('branches','branches.id','=','brancheables.branches_id')
+        // ->orWhere('items.id','like','%' . $data->search . '%')
+        // ->orWhere('items.n_serie','like','%' . $data->search . '%')
+        // // ->orWhere('models.name','like','%' . $data . '%')
+        // // ->orWhere('brands.name','like','%' . $data . '%')
+        // // ->orWhere('categories.name','like','%' . $data . '%')
+        // ->whereNull('items.deleted_at')
+        // ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
+        // ->groupBy('items.id')
+        // ->get();
 
         // foreach ($columns as $column => $k) {
 

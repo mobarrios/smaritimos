@@ -73,57 +73,55 @@ class UtilitiesController extends Controller
             $data =  $datos['search'];
 
 
-        // $q = new Items();
+        $q = new Items();
 
-        // $q = $q->where('id', 'like', '%' . $data . '%')
-        // ->where('n_serie','like','%' . $data . '%')
-        // ->whereHas('Models',function($m) use ($data)
-        // {
-        //     $m->where('name','like','%' . $data . '%' )
-        //     ->whereNull('deleted_at');
-        // })
-        // ->whereHas('Models.Brands',function($b) use ($data)
-        // {
-        //     $b->where('name','like','%' . $data . '%' )
-        //     ->whereNull('deleted_at');
-        // })
-        // ->whereHas('Brancheables.Branches',function($br) use ($data)
-        // {
-        //     $br->where('name','like','%' . $data . '%' )
-        //     ->whereNull('deleted_at');
-        // })
-        // ->whereHas('Models.Categories',function($c) use ($data)
-        // {
-        //     $c->where('name','like','%' . $data . '%' );
-        // });
+        $a = $q->where('id', 'like', '%' . $data . '%')
+        ->orWhere('n_serie','like','%' . $data . '%')
+        ->orWhereHas('Models',function($m) use ($data)
+        {
+            $m->where('name','like','%' . $data . '%' );
+        })
+        ->orWhereHas('Models.Brands',function($b) use ($data)
+        {
+            $b->where('name','like','%' . $data . '%' );
+        })
+        ->orWhereHas('Brancheables.Branches',function($br) use ($data)
+        {
+            $br->where('name','like','%' . $data . '%' );
+        })
+         ->orWhereHas('Models.Categories',function($c) use ($data)
+        {
+            $c->where('name','like','%' . $data . '%' );
+        })
+        ;
 
-        // $model = $q->get();
+        $model = $a->get();
             
 
 
 
-        $data = DB::table('items')
-        ->join('models','models.id','=','items.models_id')
-        ->join('brands','brands.id','=','models.brands_id')
-        ->join('models_categories','models_categories.models_id','=','models.id')
-        ->join('categories','categories.id','=','models_categories.categories_id')
-        ->join('brancheables', function ($q) {
-                $q->on('items.id', '=', 'brancheables.entities_id')
-                    ->where('brancheables.entities_type', 'like', '%Items%');
-            })
-        ->join('branches','branches.id','=','brancheables.branches_id')
-        ->where('items.id','like','%' . $data . '%')
-        ->where('items.n_serie','like','%' . $data . '%')
-        ->where('models.name','like','%' . $data . '%')
-        ->where('brands.name','like','%' . $data . '%')
-        ->where('categories.name','like','%' . $data . '%')
-        ->whereNull('items.deleted_at')
-        ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
-        ->groupBy('items.id')
-        ->get();
+        // $data = DB::table('items')
+        // ->join('models','models.id','=','items.models_id')
+        // ->join('brands','brands.id','=','models.brands_id')
+        // ->join('models_categories','models_categories.models_id','=','models.id')
+        // ->join('categories','categories.id','=','models_categories.categories_id')
+        // ->join('brancheables', function ($q) {
+        //         $q->on('items.id', '=', 'brancheables.entities_id')
+        //             ->where('brancheables.entities_type', 'like', '%Items%');
+        //     })
+        // ->join('branches','branches.id','=','brancheables.branches_id')
+        // ->where('items.id','like','%' . $data . '%')
+        // ->where('items.n_serie','like','%' . $data . '%')
+        // ->where('models.name','like','%' . $data . '%')
+        // ->where('brands.name','like','%' . $data . '%')
+        // ->where('categories.name','like','%' . $data . '%')
+        // ->whereNull('items.deleted_at')
+        // ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
+        // ->groupBy('items.id')
+        // ->get();
 
 
-            $model = $data;
+            //$model = $data;
 
             $company = Auth::user()->BranchesActive->company;
 
