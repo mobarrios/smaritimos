@@ -3,6 +3,7 @@
     @section('table')
 
         @foreach($models as $model)
+        @if(is_null($model->deleted_at))
             <tr>
                 <td style="width: 1%"><input class="id_destroy" value="{{$model->id}}" type="checkbox"></td>
                 <td>{{$model->id}}</td>
@@ -35,6 +36,7 @@
                     <a href="{{route('admin.items.qr',$model->id)}}" class="btn btn-md btn-default"><p class="fa fa-qrcode"></p></a>
                 </td>
             </tr>
+        @endif
         @endforeach
 
 

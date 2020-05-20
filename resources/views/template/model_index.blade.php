@@ -27,7 +27,7 @@
                         {!! Form::open(['route'=>\Illuminate\Support\Facades\Request::segment(2) == 'prospectos' ? 'admin.prospectos.index' : config('models.'.$section.'.indexRoute'),'method'=>'GET']) !!}
 
                         <div class="input-group input-group-sm" >
-                            <input type="text" name="search" class="form-control pull-right" placeholder="Search">
+                            <input type="text" name="search" class="form-control pull-right" placeholder="Search" {{(isset($search)? 'value='.$search : '')}}>
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 
