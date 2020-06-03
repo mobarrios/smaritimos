@@ -176,8 +176,8 @@ class ItemsController extends Controller
                           {
                             foreach ($p->Models->Categories as $cat) {
                                 if($cat->main == 1 && $cat->mail != null)
-                                        echo $cat->name . $cat->mail .'<br>';
-                                      //$m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                       // echo $cat->name . $cat->mail .'<br>';
+                                      $m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
                                 }
                            }
 
@@ -186,8 +186,8 @@ class ItemsController extends Controller
                           {
                             foreach ($a->Models->Categories as $cat) {
                                 if($cat->main == 1 && $cat->mail != null)
-                                    echo $cat->name . $cat->mail .'<br>';
-                                     // $m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                    //echo $cat->name . $cat->mail .'<br>';
+                                      $m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
                            }
 
                          //  $m->to('vencimientosarmamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
@@ -196,11 +196,11 @@ class ItemsController extends Controller
 
             });
 
-dd('das');
+
      
 
 
-     //∫return redirect()->back()->withErrors(['E-mail enviado Correctamente']);
+     return redirect()->back()->withErrors(['E-mail enviado Correctamente']);
     }
 
 
