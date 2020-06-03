@@ -177,7 +177,7 @@ class ItemsController extends Controller
                             foreach ($p->Models->Categories as $cat) {
                                 if($cat->main == 1 && $cat->mail != null)
                                        // echo $cat->name . $cat->mail .'<br>';
-                                      $m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                      $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
                                 }
                            }
 
@@ -187,7 +187,7 @@ class ItemsController extends Controller
                             foreach ($a->Models->Categories as $cat) {
                                 if($cat->main == 1 && $cat->mail != null)
                                     //echo $cat->name . $cat->mail .'<br>';
-                                      $m->to($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                                      $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
                            }
 
                          //  $m->to('vencimientosarmamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
