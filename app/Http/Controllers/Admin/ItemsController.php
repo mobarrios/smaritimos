@@ -169,32 +169,45 @@ class ItemsController extends Controller
             $pv = $this->repo->ItemsVencidos();
             $v  =  Items::where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
 
-            Mail::send('mails.vto', [ 'porVencer' => $pv , 'vencidos' => $v],function ($m) use ($v, $pv){
-                          $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
+
+            $cat = DB::table('categories')->where('main',1)->whereNotNull('mail')->get();
+
+            foreach($cat as $c){
+
+                Mail::send('mails.vto', ['porVencer'=> $pv, 'vencidos' => $v, 'cat_id' => $c->id], function($m) use ($c){
+                         $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
+                         $m->cc($c->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+                });
+
+            }
+
+
+            // Mail::send('mails.vto', [ 'porVencer' => $pv , 'vencidos' => $v],function ($m) use ($v, $pv){
+            //               $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
                           
-                          foreach($pv  as $p)
-                          {
-                            foreach ($p->Models->Categories as $cat) {
-                                if($cat->main == 1 && $cat->mail != null)
-                                       // echo $cat->name . $cat->mail .'<br>';
-                                      $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
-                                }
-                           }
+            //               foreach($pv  as $p)
+            //               {
+            //                 foreach ($p->Models->Categories as $cat) {
+            //                     if($cat->main == 1 && $cat->mail != null)
+            //                            // echo $cat->name . $cat->mail .'<br>';
+            //                           $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+            //                     }
+            //                }
 
 
-                          foreach($v  as $a)
-                          {
-                            foreach ($a->Models->Categories as $cat) {
-                                if($cat->main == 1 && $cat->mail != null)
-                                    //echo $cat->name . $cat->mail .'<br>';
-                                      $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
-                           }
+            //               foreach($v  as $a)
+            //               {
+            //                 foreach ($a->Models->Categories as $cat) {
+            //                     if($cat->main == 1 && $cat->mail != null)
+            //                         //echo $cat->name . $cat->mail .'<br>';
+            //                           $m->cc($cat->mail,'Servicios Maritimos')->subject('Vencimiento de Artículo!');
+            //                }
 
-                         //  $m->to('vencimientosarmamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
-                         //   $m->to('manuelobarrios@gmail.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
-                          }
+            //              //  $m->to('vencimientosarmamento@serviciosmaritimos.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+            //              //   $m->to('manuelobarrios@gmail.com','Servicios Maritimos')->subject('Vencimiento de Artículo!');
+            //               }
 
-            });
+            // });
 
 
      
