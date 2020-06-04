@@ -21,6 +21,7 @@
 
                             </div>
 
+
                         </div>
                     </div>
                     <div class="col-xs-4 ">
@@ -31,7 +32,7 @@
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 
-                                    {{-- <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtros <span class="caret"></span></button>
+                                    <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtros <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         @foreach(config('models.'.$section.'.search') as $filter => $v)
                                             @if(!is_array($v))
@@ -41,7 +42,7 @@
                                                 <li><a ><input name="filter[]" value="{{$v[0]}},{{$v[1]}}"  checked type="checkbox"> {{$filter}}</a></li>
                                             @endif
                                         @endforeach
-                                    </ul> --}}
+                                    </ul>
 
                             </div>
                         </div>

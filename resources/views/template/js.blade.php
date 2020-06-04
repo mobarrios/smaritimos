@@ -1,3 +1,6 @@
+
+
+
 <!-- angular -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -70,6 +73,7 @@
 
 @if(Auth::user())
 <script>
+    
 
 
         // guarda en localstorage el nombre del menu para luego volver a abrirlo
