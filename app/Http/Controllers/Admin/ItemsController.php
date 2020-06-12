@@ -57,6 +57,8 @@ class ItemsController extends Controller
         //breadcrumb activo
         $this->data['activeBread'] = 'Listar';
 
+        $catId = $this->route->getParameter('cat_id');
+
         //si request de busqueda
         //
         // if( isset($this->request->search) && !is_null($this->request->filter))
@@ -90,8 +92,26 @@ class ItemsController extends Controller
         //guarda en session lo que se busco para exportar
         Session::put('export', ['search'=> $this->data['search'],'model' => $this->repo->getModel()->getClass(),'section' => config('models.'.$this->section.'.sectionName')]);
 
+
+        // selecciona superCategoria
+        
+         $m = $model->whereHas('Models',function($m) use ($catId){
+            //$m->where('id',45);
+            $m->whereHas('Categories',function($c) use ($catId){
+                $c->where('categories_id',$catId);
+            });
+
+            // $m->whereHas('Categories',function($cat) use ($catId){
+
+            //     $cat->where('categories.id',$catId);
+            // });
+        });
+
+    
+        
+
         //pagina el query
-        $this->data['models'] = $model->paginate(config('models.'.$this->section.'.paginate'));
+        $this->data['models'] = $m->paginate(config('models.'.$this->section.'.paginate'));
 
 
         //return view($this->getConfig()->indexRoute)->with($this->data);

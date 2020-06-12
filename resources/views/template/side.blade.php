@@ -42,7 +42,47 @@
                 <ul class="treeview-menu">
 
                     @permission('items.list')
-                    <li ><a class="menu"  href="{{route('admin.items.index')}}"><span >Stock</span></a></li>
+{{--                     <li ><a class="menu"  href="{{route('admin.items.index')}}"><span >Stock</span></a></li>
+--}}
+
+                    <li class="treeview">
+                        <a href="#">
+                            <span>Stock</span>
+                            <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                                @foreach(App\Entities\Admin\Categories::where('main',1)->get() as $cat)
+                                    <li ><a class="menu"
+                                        href="{{route('admin.items.index',$cat->id)}}"><span>{{$cat->name}}</span></a>
+                                    </li>
+                                @endforeach
+
+                            {{-- @permission('categories.list')
+                            <li ><a class="menu"
+                                        href="{{route('admin.categories.index')}}"><span> Categorias</span></a></li>
+                            @endpermission
+                            @permission('brands.list')
+                            <li><a class="menu"
+                                        href="{{route('admin.brands.index')}}"><span> Marcas</span></a></li>
+                            @endpermission
+                            @permission('models.list')
+                            <li ><a class="menu"
+                                        href="{{route('admin.models.index')}}"><span> Modelos</span></a></li>
+                            @endpermission --}}
+                            {{-- @permission('colors.list')
+                            <li><a class="menu"
+                            href="{{route('admin.colors.index')}}"><span> Colores</span></a></li>
+                            @endpermission --}}
+                            {{--@permission('additionals.list')--}}
+                            {{--<li class={{ Request::segment(2) == "additionals" ? 'active' : '' }}><a--}}
+                            {{--href="{{route('configs.additionals.index')}}"><span> Adicionales</span></a></li>--}}
+                            {{--@endpermission--}}
+                        </ul>
+                    </li>
+
                     @endpermission
                    {{--  @permission('modelslistsprices.list')
                     <li >
