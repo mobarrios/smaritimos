@@ -58,6 +58,7 @@ class ItemsController extends Controller
         $this->data['activeBread'] = 'Listar';
 
         $catId = $this->route->getParameter('cat_id');
+        Session::put('superCategoriaId', $catId);
 
         //si request de busqueda
         //
@@ -95,10 +96,10 @@ class ItemsController extends Controller
 
         // selecciona superCategoria
         
-         $m = $model->whereHas('Models',function($m) use ($catId){
+         $m = $model->whereHas('Models',function($m){
             //$m->where('id',45);
-            $m->whereHas('Categories',function($c) use ($catId){
-                $c->where('categories_id',$catId);
+            $m->whereHas('Categories',function($c){
+                $c->where('categories_id',Session::get('superCategoriaId'));
             });
 
             // $m->whereHas('Categories',function($cat) use ($catId){
@@ -107,7 +108,8 @@ class ItemsController extends Controller
             // });
         });
 
-    
+        
+
         
 
         //pagina el query
