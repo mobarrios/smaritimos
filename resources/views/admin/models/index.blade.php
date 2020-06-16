@@ -13,6 +13,13 @@
                 {{$model->Brands->name }} :
                 <strong>{{$model->name}}</strong>
             </td>
+            <td>
+                @foreach($model->Categories as $cat)
+                    @if($cat->main)
+                        {{$cat->name}}
+                    @endif
+                @endforeach 
+            </td>
 
             {{-- <td>
                 @if($model->activeListPrice)
