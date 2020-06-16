@@ -55,9 +55,11 @@
                         <ul class="treeview-menu">
 
                                 @foreach(App\Entities\Admin\Categories::where('main',1)->get() as $cat)
-                                    <li ><a class="menu"
-                                        href="{{route('admin.items.index',$cat->id)}}"><span>{{$cat->name}}</span></a>
-                                    </li>
+                                    @permission(strtolower($cat->name))
+                                        <li ><a class="menu"
+                                            href="{{route('admin.items.index',$cat->id)}}"><span>{{$cat->name}}</span></a>
+                                        </li>
+                                    @endpermission
                                 @endforeach
 
                             {{-- @permission('categories.list')
