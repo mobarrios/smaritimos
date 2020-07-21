@@ -6,7 +6,8 @@
         <div class="login-box-body">
 
             <div class="login-logo">
-                BACK <strong>END</strong>
+                 Servicios Marítimos<br>
+                <strong>Inventario</strong>
             </div>
             <hr>
             <p class="login-box-msg">Por Favor!, coloque sus credenciales.</p>

@@ -45,7 +45,7 @@
            @foreach($data->Models->Categories as $cat)
                 @if($cat->id == $cat_id) 
                     <h4>
-                        <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data->id}}">  #{{$data->id}}  <strong>{{$data->Models->Brands->name or ''}}   {{$data->Models->name or ''}}   </strong>  / deposito : <strong>{{$data->Brancheables()->first()->branches->name or ''}}</strong>/  vto : <strong>{{$data->f_vencimiento}}</strong> </a>
+                        <a class="btn btn-primary" href="http://inventario.serviciosmaritimos.com/admin/items/edit/{{$data->id}}">  #{{$data->id}}  <strong>{{$data->Models->Brands->name or ''}}   {{$data->Models->name or ''}}   </strong>  / deposito : <strong>{{$data->Brancheables()->first()->branches->name or ''}}</strong>/  vto : <strong>{{$data->f_vencimiento}}</strong> </a>
                     </h4>
                 @endif 
             @endforeach
@@ -56,7 +56,7 @@
              @foreach($data1->Models->Categories as $cat1)
                 @if($cat1->id == $cat_id) 
                     <h4>
-                        <a class="btn btn-primary" href="http://smaritimos.coders.com.ar/admin/items/edit/{{$data1->id}}">#{{$data1->id}}  <strong>{{$data1->Models->Brands->name or ''}}    {{$data1->Models->name or ''}}  </strong>  / deposito : <strong>{{$data1->Brancheables()->first()->branches->name or  ''}} </strong>/  vto : <strong>{{$data1->f_vencimiento}}</strong> </a>
+                        <a class="btn btn-primary" href="http://inventario.serviciosmaritimos.com/admin/items/edit/{{$data1->id}}">#{{$data1->id}}  <strong>{{$data1->Models->Brands->name or ''}}    {{$data1->Models->name or ''}}  </strong>  / deposito : <strong>{{$data1->Brancheables()->first()->branches->name or  ''}} </strong>/  vto : <strong>{{$data1->f_vencimiento}}</strong> </a>
                     </h4>
                 @endif
             @endforeach 

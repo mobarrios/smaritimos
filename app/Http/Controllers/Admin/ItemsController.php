@@ -34,21 +34,17 @@ class ItemsController extends Controller
         $this->repo     = $repo;
         $this->route    = $route;
 
-        $this->section          = 'items';
-        $this->data['section']  = $this->section;
+        $this->section                  = 'items';
+        $this->data['section']          = $this->section;
 
         //data
-        $this->data['models_types'] = $modelsRepo->ListsData('name','id');
-        $this->data['colors']       = $colorsRepo->ListsData('name','id');
-
-        $this->data['brands']       = $brandsRepo->getAllWithModels();
-
-        $this->data['estados']          =  config('status.items');
+        $this->data['models_types']     = $modelsRepo->ListsData('name','id');
+        $this->data['colors']           = $colorsRepo->ListsData('name','id');
+        $this->data['brands']           = $brandsRepo->getAllWithModels();
+        $this->data['estados']          = config('status.items');
         $this->data['capacidad_tipos']  = config('status.capacidades_tipo');
-
-        $this->data['companies'] = Company::lists('razon_social','id');
-
-        $this->data['branches'] = Branches::lists('name','id');
+        $this->data['companies']        = Company::lists('razon_social','id');
+        $this->data['branches']         = Branches::lists('name','id');
 
     }
 
@@ -58,7 +54,11 @@ class ItemsController extends Controller
         $this->data['activeBread'] = 'Listar';
 
         $catId = $this->route->getParameter('cat_id');
-        Session::put('superCategoriaId', $catId);
+
+        if(!is_null($catId))
+            Session::put('superCategoriaId', $catId);
+
+
 
         //si request de busqueda
         //
@@ -94,21 +94,21 @@ class ItemsController extends Controller
         Session::put('export', ['search'=> $this->data['search'],'model' => $this->repo->getModel()->getClass(),'section' => config('models.'.$this->section.'.sectionName')]);
 
 
+
+
         // selecciona superCategoria
         
-         $m = $model->whereHas('Models',function($m){
-            //$m->where('id',45);
-            $m->whereHas('Categories',function($c){
-                $c->where('categories_id',Session::get('superCategoriaId'));
-            });
-
-            // $m->whereHas('Categories',function($cat) use ($catId){
-
-            //     $cat->where('categories.id',$catId);
-            // });
+         $m = $model->whereHas('Models',function($a){
+                    $a->whereHas('Categories',function($c){
+                        $c->where('categories.id',Session::get('superCategoriaId'));
+                    });
         });
 
-        
+        echo Session::get('superCategoriaId');
+
+
+
+         //dd($m->get());
 
         
 
