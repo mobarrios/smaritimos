@@ -104,7 +104,7 @@ class ItemsController extends Controller
                     });
         });
 
-        echo Session::get('superCategoriaId');
+        //echo Session::get('superCategoriaId');
 
 
 
@@ -188,8 +188,8 @@ class ItemsController extends Controller
     //send mail
     public function sendMail(){
 
-            $pv  = $this->repo->ItemsVencidos();
-            $v   =  Items::where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
+            $pv = $this->repo->ItemsVencidos();
+            $v  =  Items::where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
             $cat = DB::table('categories')->where('main',1)->whereNotNull('mail')->get();
 
             foreach($cat as $c){

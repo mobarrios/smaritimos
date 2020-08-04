@@ -2,7 +2,7 @@
 
 namespace App\Console;
 use DB;
-use App\Http\Controllers\Admin\ItemsController as itemsController; 
+use \App\Http\Controllers\Admin;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,10 +28,9 @@ class Kernel extends ConsoleKernel
         //$schedule->command('inspire')
          //        ->hourly();
 
-         $schedule->call(function(){
+        
 
-            $itemsController->sendMail();
+         $schedule->call('App\Http\Controllers\Admin\ItemsController@sendMail')->everyMinute();
 
-         })->dailyAt('00:00');
     }
 }

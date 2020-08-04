@@ -69,6 +69,7 @@ class UtilitiesController extends Controller
            // ini_set('memory_limit','128M');
         
             $datos = Session::get('export');
+            
 
             $data =  $datos['search'];
 
@@ -79,7 +80,10 @@ class UtilitiesController extends Controller
         ->orWhere('n_serie','like','%' . $data . '%')
         ->orWhereHas('Models',function($m) use ($data)
         {
-            $m->where('name','like','%' . $data . '%' );
+            $m->where('name','like','%' . $data . '%' )
+                ->whereHas('Categories',function($c){
+                $c->where('categories.id',Session::get('superCategoriaId'));
+            });
         })
         ->orWhereHas('Models.Brands',function($b) use ($data)
         {
