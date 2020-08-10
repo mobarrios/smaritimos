@@ -65,23 +65,23 @@ class UtilitiesController extends Controller
 
      public function exportListToPdfItems(Route $route , PDF $pdf){
 
-           // ini_set('max_execution_time',4500);
-           // ini_set('memory_limit','128M');
-        
+
+        //ini_set('max_execution_time', 300);
+        //ini_set("memory_limit","512M");
             $datos = Session::get('export');
             
 
             $data =  $datos['search'];
 
 
-        $q = new Items();
+       /*  $q = new Items();
 
         $a = $q->where('id', 'like', '%' . $data . '%')
         ->orWhere('n_serie','like','%' . $data . '%')
-        ->orWhereHas('Models',function($m) use ($data)
+        ->whereHas('Models',function($m) use ($data)
         {
-            $m->where('name','like','%' . $data . '%' )
-                ->whereHas('Categories',function($c){
+            //$m->where('name','like','%' . $data . '%' )
+                $m->whereHas('Categories',function($c){
                 $c->where('categories.id',Session::get('superCategoriaId'));
             });
         })
@@ -99,33 +99,41 @@ class UtilitiesController extends Controller
         })
         ;
 
-        $model = $a->get();
+
+
+
+        $model = $a->get(); */
             
 
 
 
-        // $data = DB::table('items')
-        // ->join('models','models.id','=','items.models_id')
-        // ->join('brands','brands.id','=','models.brands_id')
-        // ->join('models_categories','models_categories.models_id','=','models.id')
-        // ->join('categories','categories.id','=','models_categories.categories_id')
-        // ->join('brancheables', function ($q) {
-        //         $q->on('items.id', '=', 'brancheables.entities_id')
-        //             ->where('brancheables.entities_type', 'like', '%Items%');
-        //     })
-        // ->join('branches','branches.id','=','brancheables.branches_id')
-        // ->where('items.id','like','%' . $data . '%')
-        // ->where('items.n_serie','like','%' . $data . '%')
-        // ->where('models.name','like','%' . $data . '%')
-        // ->where('brands.name','like','%' . $data . '%')
-        // ->where('categories.name','like','%' . $data . '%')
-        // ->whereNull('items.deleted_at')
-        // ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
-        // ->groupBy('items.id')
-        // ->get();
+         $model = DB::table('items')
+         ->join('models','models.id','=','items.models_id')
+         ->join('brands','brands.id','=','models.brands_id')
+         ->join('models_categories','models_categories.models_id','=','models.id')
+         //->join('categories','categories.id','=','models_categories.categories_id')
+         ->join('categories',function($c){
+                $c->on('categories.id','=','models_categories.categories_id')
+                ->where('categories.id','=',Session::get('superCategoriaId'));
+         })
+         ->join('brancheables', function ($q) {
+                 $q->on('items.id', '=', 'brancheables.entities_id')
+                     ->where('brancheables.entities_type', 'like', '%Items%');
+             })
+         ->join('branches','branches.id','=','brancheables.branches_id')
+         ->where('items.id','like','%' . $data . '%')
+         ->where('items.n_serie','like','%' . $data . '%')
+         ->where('models.name','like','%' . $data . '%')
+         ->where('brands.name','like','%' . $data . '%')
+         ->where('categories.name','like','%' . $data . '%')
+         ->whereNull('items.deleted_at')
+         ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
+         ->groupBy('items.id')
+         ->get();
 
 
             //$model = $data;
+
 
             $company = Auth::user()->BranchesActive->company;
 
@@ -133,7 +141,7 @@ class UtilitiesController extends Controller
 
             $pdf->loadView('template.listExportItems',['model' => $model,'company' => $company,'section' => 'items' ,'export' => $export ])->setPaper('A4','landscape');
 
-            return $pdf->stream();
+            return $pdf->download();
         }
 
 

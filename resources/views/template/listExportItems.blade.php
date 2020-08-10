@@ -336,25 +336,23 @@
         </thead>
         <tbody>
             @foreach($model as $datos)
-            @if(is_null($datos->deleted_at))
                 <tr>
                         <td style="padding:2px;">
                             {{$datos->id}}
                         </td>  
                         <td style="padding:2px;">
-                             {{$datos->Models->Brands->name}}  {{$datos->Models->name}}
+                             {{$datos->brand}}  {{$datos->model}}
                         </td>  
                         <td style="padding:2px;">
                             {{$datos->f_vencimiento}}  
                         </td>  
                         <td>
-                             {{$datos->Brancheables->first()->branches->name}}  
+                             {{$datos->deposito}}  
                         </td>
                         <td>
                             {{config('status.items.'.$datos->status)}}
                         </td>         
                 </tr>
-            @endif
             @endforeach
 
         </tbody>
