@@ -127,7 +127,7 @@ class UtilitiesController extends Controller
          ->where('brands.name','like','%' . $data . '%')
          ->where('categories.name','like','%' . $data . '%')
          ->whereNull('items.deleted_at')
-         ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito')
+         ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito','categories.name as categoria')
          ->groupBy('items.id')
          ->get();
 

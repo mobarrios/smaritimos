@@ -350,6 +350,9 @@
                              {{$datos->deposito}}  
                         </td>
                         <td>
+                            {{$datos->categoria}}
+                        </td>
+                        <td>
                             {{config('status.items.'.$datos->status)}}
                         </td>         
                 </tr>
