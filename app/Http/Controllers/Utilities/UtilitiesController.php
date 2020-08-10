@@ -141,7 +141,7 @@ class UtilitiesController extends Controller
 
             $pdf->loadView('template.listExportItems',['model' => $model,'company' => $company,'section' => 'items' ,'export' => $export ])->setPaper('A4','landscape');
 
-            return $pdf->download();
+            return $pdf->stream();
         }
 
 

@@ -329,9 +329,18 @@
         <thead>
             <tr>
 
-                @foreach($export as $ind => $val)
-                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">{!! $ind !!}</th>
-                @endforeach
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Cod</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Artículo</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Vto.</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Depósito</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Artículo</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Cat.</th>
+                    <th bgcolor="#d3d3d3" style="padding:10px !important;" class="text-center">Estado</th>
+
+
+
+
+               
             </tr>
         </thead>
         <tbody>
