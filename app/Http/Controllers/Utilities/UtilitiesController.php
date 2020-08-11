@@ -134,6 +134,9 @@ class UtilitiesController extends Controller
 
 
 
+
+         dd($model);
+         
             //$model = $data;
 
 
