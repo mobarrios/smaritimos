@@ -104,6 +104,7 @@ class UtilitiesController extends Controller
 
         $model = $a->get(); */
             
+        
 
 
 
@@ -121,15 +122,16 @@ class UtilitiesController extends Controller
                      ->where('brancheables.entities_type', 'like', '%Items%');
              })
          ->join('branches','branches.id','=','brancheables.branches_id')
-         ->where('items.id','like','%' . $data . '%')
-         ->where('items.n_serie','like','%' . $data . '%')
-         ->where('models.name','like','%' . $data . '%')
-         ->where('brands.name','like','%' . $data . '%')
-         ->where('categories.name','like','%' . $data . '%')
+         ->orWhere('items.id','like','%' . $data . '%')
+         ->orWhere('items.n_serie','like','%' . $data . '%')
+         ->orWhere('models.name','like','%' . $data . '%')
+         ->orWhere('brands.name','like','%' . $data . '%')
+         ->orWhere('categories.name','like','%' . $data . '%')
          ->whereNull('items.deleted_at')
          ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito','categories.name as categoria')
          ->groupBy('items.id')
          ->get();
+
 
 
             //$model = $data;
