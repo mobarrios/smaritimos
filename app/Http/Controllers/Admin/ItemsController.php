@@ -189,7 +189,8 @@ class ItemsController extends Controller
     public function sendMail(){
 
             $pv = $this->repo->ItemsVencidos();
-            $v  =  Items::where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
+            $it = new Items();
+            $v  =  $it->where('status','!=',7)->where('f_vencimiento','<=', date('Y-m-d'))->orderBy('f_vencimiento','DESC')->get();
             $cat = DB::table('categories')->where('main',1)->whereNotNull('mail')->get();
 
             foreach($cat as $c){

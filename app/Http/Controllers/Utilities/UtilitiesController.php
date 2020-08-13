@@ -109,35 +109,34 @@ class UtilitiesController extends Controller
 
 
          $model = DB::table('items')
-         ->join('models','models.id','=','items.models_id')
-         ->join('brands','brands.id','=','models.brands_id')
-         ->join('models_categories','models_categories.models_id','=','models.id')
-         //->join('categories','categories.id','=','models_categories.categories_id')
-         ->join('categories',function($c){
-                $c->on('categories.id','=','models_categories.categories_id')
-                ->where('categories.id','=',Session::get('superCategoriaId'));
-         })
-         ->join('brancheables', function ($q) {
-                 $q->on('items.id', '=', 'brancheables.entities_id')
-                     ->where('brancheables.entities_type', 'like', '%Items%');
-             })
-         ->join('branches','branches.id','=','brancheables.branches_id')
-         ->orWhere('items.id','like','%' . $data . '%')
-         ->orWhere('items.n_serie','like','%' . $data . '%')
-         ->orWhere('models.name','like','%' . $data . '%')
-         ->orWhere('brands.name','like','%' . $data . '%')
-         ->orWhere('categories.name','like','%' . $data . '%')
-         ->whereNull('items.deleted_at')
-         ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito','categories.name as categoria')
-         ->groupBy('items.id')
-         ->get();
+                    ->join('models','models.id','=','items.models_id')
+                    ->join('brands','brands.id','=','models.brands_id')
+                    ->join('models_categories','models_categories.models_id','=','models.id')
+                    //->join('categories','categories.id','=','models_categories.categories_id')
+                    ->join('categories',function($c){
+                            $c->on('categories.id','=','models_categories.categories_id')
+                            ->where('categories.id','=',Session::get('superCategoriaId'));
+                    })
+                    ->join('brancheables', function ($q) {
+                            $q->on('items.id', '=', 'brancheables.entities_id')
+                                ->where('brancheables.entities_type', 'like', '%Items%');
+                        })
+                    ->join('branches','branches.id','=','brancheables.branches_id')
+                    ->orWhere('items.id','like','%' . $data . '%')
+                    ->orWhere('items.n_serie','like','%' . $data . '%')
+                    ->orWhere('models.name','like','%' . $data . '%')
+                    ->orWhere('brands.name','like','%' . $data . '%')
+                    ->orWhere('categories.name','like','%' . $data . '%')
+                    ->whereNull('items.deleted_at')
+                    ->select('items.id','items.f_vencimiento','models.name as model','brands.name as brand','items.status','branches.name as deposito','categories.name as categoria')
+                    //->groupBy('items.id')
+                    ->get();
 
 
 
 
          
             //$model = $data;
-
 
             $company = Auth::user()->BranchesActive->company;
 
