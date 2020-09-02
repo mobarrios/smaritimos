@@ -69,7 +69,7 @@ class ItemsController extends Controller
         if( isset($this->request->search) || $this->route->hasParameter('search'))
         {
             $this->request['search'] = isset($this->request->search) ? $this->request->search : isset($this->request->search) ;  $model = $this->repo->search($this->request);
-            
+
             $this->data['search'] = $this->request['search'];
 
 
@@ -97,7 +97,7 @@ class ItemsController extends Controller
 
 
         // selecciona superCategoria
-        
+
          $m = $model->whereHas('Models',function($a){
                     $a->whereHas('Categories',function($c){
                         $c->where('categories.id',Session::get('superCategoriaId'));
@@ -110,7 +110,7 @@ class ItemsController extends Controller
 
          //dd($m->get());
 
-        
+
 
         //pagina el query
         $this->data['models'] = $m->paginate(config('models.'.$this->section.'.paginate'));
@@ -205,7 +205,7 @@ class ItemsController extends Controller
 
             // Mail::send('mails.vto', [ 'porVencer' => $pv , 'vencidos' => $v],function ($m) use ($v, $pv){
             //               $m->from('help@coders.com.ar', 'Aviso de próximos vencimientos');
-                          
+
             //               foreach($pv  as $p)
             //               {
             //                 foreach ($p->Models->Categories as $cat) {
@@ -231,7 +231,7 @@ class ItemsController extends Controller
             // });
 
 
-     
+
 
 
      return redirect()->back()->withErrors(['E-mail enviado Correctamente']);
@@ -251,5 +251,5 @@ class ItemsController extends Controller
     }
 
 
-    
+
 }
