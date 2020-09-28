@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Entities\Admin\Certificates;
 use App\Entities\Admin\Items;
+use App\Entities\Admin\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Admin\BrandsRepo;
 use App\Http\Repositories\Admin\CertificatesRepo;
@@ -17,9 +18,8 @@ use League\Flysystem\Config;
 use App\Entities\Configs\Company;
 use App\Entities\Configs\Branches;
 use Illuminate\Support\Facades\DB;
-
- use Mail;
-
+use Mail;
+use Auth;
 
 
 
@@ -57,6 +57,10 @@ class ItemsController extends Controller
 
         if(!is_null($catId))
             Session::put('superCategoriaId', $catId);
+
+
+    
+        //if( Auth::user()->can($this->data['superCategoriaName']) );
 
 
 
@@ -114,7 +118,7 @@ class ItemsController extends Controller
 
         //pagina el query
         $this->data['models'] = $m->paginate(config('models.'.$this->section.'.paginate'));
-
+     
 
         //return view($this->getConfig()->indexRoute)->with($this->data);
         return view(config('models.'.$this->section.'.indexRoute'))->with($this->data);

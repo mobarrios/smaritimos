@@ -14,8 +14,8 @@ class UsersRepo extends BaseRepo {
 
     public function create($data)
     {
-        $model =  parent::create($data);
 
+        $model =  parent::create($data);
         $model->Roles()->attach($data->request->all()['roles_id']);
 
         return $model;
@@ -24,10 +24,10 @@ class UsersRepo extends BaseRepo {
 
    public function update($id, $data)
    {
-      
+       // dd($data->request->all()['roles_id']);
        $model = parent::update($id, $data);
 
-       $model->Roles()->sync([$data->request->all()['roles_id']]);
+       $model->Roles()->sync($data->request->all()['roles_id']);
 
        return $model;
    }

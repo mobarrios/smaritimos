@@ -64,7 +64,8 @@
                     </thead>
                     <tbody>
                         @foreach($items as $item)
-                            @if($item->isVencido)
+                            @if($item->isVencido)   
+                   
                                 <tr>
                                     <td >{{$item->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
