@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Session;
 use League\Flysystem\Config;
-
 use App\Entities\Configs\Company;
 use App\Entities\Configs\Branches;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +57,7 @@ class ItemsController extends Controller
 
         if(!is_null($catId))
             Session::put('superCategoriaId', $catId);
+
 
 
     

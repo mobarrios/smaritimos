@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => 200422,
+    'version' => 201030,
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +149,7 @@ return [
 
         //images
         Intervention\Image\ImageServiceProvider::class,
-        
+
         //roles
         Bican\Roles\RolesServiceProvider::class,
 

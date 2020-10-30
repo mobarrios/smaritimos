@@ -7,6 +7,7 @@ use App\Entities\Admin\Items;
 use App\Http\Repositories\BaseRepo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Entities\Admin\Categories;
 
 
 class ItemsRepo extends BaseRepo
@@ -24,7 +25,27 @@ class ItemsRepo extends BaseRepo
     {
         //$columns = config('models.'.$this->model->section.'.search');
 
-        $q = $this->model->where('id', 'like', '%' . $data->search . '%')
+
+
+        if (Auth::user()->is('armamento|sistemas|tecnica|tecnica')) { 
+
+        $ids = [];
+        //dd($ids);
+
+        foreach (Auth::user()->roles as $key => $value) {
+
+          $categories = Categories::where('name', $value->name)->first();
+              if(!is_null($categories)){
+                array_push($ids, $categories->id);
+              }
+
+            }
+
+        }
+
+
+        $q = $this->model
+        ->where('id', 'like', '%' . $data->search . '%')
         ->orWhere('n_serie','like','%' . $data->search . '%')
         ->orWhereHas('Models',function($m) use ($data)
         {
@@ -34,16 +55,53 @@ class ItemsRepo extends BaseRepo
         {
             $b->where('name','like','%' . $data->search . '%' );
         })
+        /*
         ->orWhereHas('Brancheables.Branches',function($br) use ($data)
         {
             $br->where('name','like','%' . $data->search . '%' );
         })
-         ->orWhereHas('Models.Categories',function($c) use ($data)
+        */
+        ->orWhereHas('Models.Categories',function($c) use ($data)
         {
             $c->where('name','like','%' . $data->search . '%' );
-        })
-        ;
+            //$c->whereIn('id', $ids);
+        });
+     
+        //dd($q->get()->first()->Models->Categories );
 
+        /*
+        
+        $res = [];
+
+
+        foreach ($q->get() as $key => $value){
+
+            $i = [];
+
+            foreach ($value->Models->Categories as $key => $value) {
+                array_push($i, $value->id);
+            }
+            
+            # code...s
+            if( array_intersect($i, $ids) ){
+                array_push($res, $value);
+            }
+
+
+        }
+        */
+       
+        
+    
+        //dd($q->first()->Models->Categories );
+
+        /*
+        $q->whereHas('Models',function($a)use($ids){
+            $a->whereHas('Categories',function($c)use($ids){
+            $c->whereIn('categories.id', $ids);
+            });
+        });
+        */
         // $q = DB::table('items')
         // ->join('models','models.id','=','items.models_id')
         // ->join('brands','brands.id','=','models.brands_id')
@@ -84,7 +142,7 @@ class ItemsRepo extends BaseRepo
         //     }
         // }
 
-        return $q ;
+        return $res ;
 
     }
 
