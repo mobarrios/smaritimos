@@ -1,4 +1,16 @@
 @extends('template')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/datetable/buttons.dataTables.min.css') }}">
+{{--
+<link rel="stylesheet" href="{{ asset('css/datetable/dataTables.bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+--}}
+<link rel="stylesheet" href="{{ asset('css/datetable/jquery.dataTables.min.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css">
+
+
+
+@endsection
 @section('sectionContent')
 
     <div class="row">
@@ -6,6 +18,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
+
                     <div class="col-xs-8">
                         <div class="row pull-left box-tools ">
                             <button id="check_all" type="button" class="btn btn-sm btn-default" data-toggle="button" aria-pressed="false"><i class="fa fa-check-square-o"></i></button>
@@ -14,14 +27,7 @@
                                 <button id="btn-destroy" class="destroy_btn btn btn-default" url_destroy = "{{ \Illuminate\Support\Facades\Request::segment(2) == 'budgets' ? route(config('models.'.$section.'.destroyRoute')) : route(config('models.'.$section.'.destroyRoute'))}}" title="Borrar"><i class="fa fa-minus-square-o"></i></button>
                                 <button id="edit_btn" route_edit="{{ \Illuminate\Support\Facades\Request::segment(2) == 'budgets' ? route(config('models.'.$section.'.createRoute')) : route(config('models.'.$section.'.editRoute'))}}" class="btn btn-default" title="Editar" ><i class="fa fa-edit"></i></button>
                             </div>
-                            <div class="btn-group btn-group-sm">
-                                <a href="{{route('utilities.exportToExcel')}}" class="btn btn-default" title="Exportar Excel"><i class="fa bg-success fa-file-excel-o"></i></a>
-                                <a href="{{ \Illuminate\Support\Facades\Request::segment(1) == 'admin' ? route('admin.'.$section.'.pdf') : route('configs.'.$section.'.pdf')}}" target="_blank" class="btn btn-default" title="Exportar PDF"><i class="fa bg-danger fa-file-pdf-o"></i></a>
-                                {{--<a href="{{ route('configs.customs',$section) }}" class="btn btn-default" title="Configurar" ><i class="fa fa-gear"></i></a>--}}
-
-                            </div>
-
-
+                          
                         </div>
                     </div>
                     {{--
@@ -54,7 +60,7 @@
 
                 </div>
                 <div class="box-body table-responsive">
-                    <table class="table table-hover table-striped dateTable" id="tableIndex">
+                    <table class="table  dateTable " id="tableIndex">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -135,13 +141,59 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="{{ asset('js/datetable/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/dataTables.buttons.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/jszip.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/pdfmake.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/vfs_fonts.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/buttons.html5.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/buttons.print.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/jquery.mark.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/datatables.mark.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datetable/buttons.colVis.min.js') }}"></script>
+
+
 <script type="text/javascript">
 
-$('.dateTable').DataTable({
-"language": {
-    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-}
+
+$('.dateTable').DataTable( {
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+    },
+    dom: 'Bfrtip',
+    buttons: [
+    {
+        extend: 'print',
+        title: 'Stock',
+        text: 'Copiar',
+        exportOptions: {
+            columns: ':visible'
+        }
+    },
+    {
+        extend: 'excel',
+        title: 'Stock',
+        exportOptions: {
+            columns: ':visible'
+        }
+    },
+    {
+        extend: 'pdfHtml5',
+        title: 'Stock',
+        exportOptions: {
+            columns: ':visible'
+        }
+    },
+
+    'colvis'
+    ],
+    columnDefs: [{
+    targets: -1,
+    visible: false
+    }]
+
 });
 
 </script>
+
 @endsection
