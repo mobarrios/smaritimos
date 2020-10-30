@@ -117,7 +117,7 @@ class ItemsController extends Controller
 
 
         //pagina el query
-        $this->data['models'] = $m->paginate(config('models.'.$this->section.'.paginate'));
+        $this->data['models'] = $m->get();
      
 
         //return view($this->getConfig()->indexRoute)->with($this->data);
