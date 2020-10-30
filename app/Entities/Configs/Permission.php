@@ -16,7 +16,7 @@ class Permission extends \Bican\Roles\Models\Permission
         //if(Auth::check())
         //{
         // DB::setDefaultConnection('mysql');
-        Config::set('database.connections.mysql.database', Auth::user()->db);
+        //Config::set('database.connections.mysql.database', Auth::user()->db);
         //}
     }
 

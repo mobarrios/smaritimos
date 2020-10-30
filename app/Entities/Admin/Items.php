@@ -154,6 +154,19 @@ use Carbon\Carbon;
         return $this->belongsTo(Company::class);
      }
 
+
+
+    public function getIsSuperCategoria($campo){
+
+
+        
+
+
+
+    }
+
+
+
  }
 
 

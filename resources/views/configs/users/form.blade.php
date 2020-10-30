@@ -34,10 +34,18 @@
 
             <div class="col-xs-6 form-group">
                 {!! Form::label('Roles') !!}
+                   
                     @if(isset($models))
-                        {!! Form::select('roles_id',$roles, $models->roles->first()->id, ['class'=>'select2 form-control']) !!}
+                    <select name="roles_id[]" multiple="multiple" style="margin-bottom:15px;" class="form-control select2">
+                    @foreach($roles as $key => $item) 
+                        <option value="{{$key}}" {{ $models->Roles->contains($key) ? 'selected' : '' }} > {{$item}}</option>
+                     @endforeach                                       
+                    </select>
+                            {{-- 
+                        {!! Form::select('roles_id[]',$roles,$models->roles()->get()->id, ['class'=>'select2 form-control', 'multiple']) !!}
+                                --}}
                     @else
-                        {!! Form::select('roles_id',$roles, null, ['class'=>'select2 form-control']) !!}
+                        {!! Form::select('roles_id[]',$roles, null, ['class'=>'select2 form-control', 'multiple']) !!}
                 @endif
             </div>
             <div class="col-xs-6 form-group">
