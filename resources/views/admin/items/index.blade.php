@@ -27,7 +27,7 @@
                                 <button id="btn-destroy" class="destroy_btn btn btn-default" url_destroy = "{{ \Illuminate\Support\Facades\Request::segment(2) == 'budgets' ? route(config('models.'.$section.'.destroyRoute')) : route(config('models.'.$section.'.destroyRoute'))}}" title="Borrar"><i class="fa fa-minus-square-o"></i></button>
                                 <button id="edit_btn" route_edit="{{ \Illuminate\Support\Facades\Request::segment(2) == 'budgets' ? route(config('models.'.$section.'.createRoute')) : route(config('models.'.$section.'.editRoute'))}}" class="btn btn-default" title="Editar" ><i class="fa fa-edit"></i></button>
                             </div>
-                          
+
                         </div>
                     </div>
                     {{--
@@ -66,13 +66,16 @@
                             <th>#</th>
                             <th>ID</th>
                             <th>Imagen</th>
-                            <th>N Serie</th>
+                            <th>N/S</th>
                             <th>Nombre</th>
+                            <th>Tipo Capacidad</th>
+                            <th>Capacidad</th>
+
                             <th>Categorias</th>
                             <th>Sucursal</th>
                             <th>Estado</th>
                             <th>Acciones</th>
-                         
+
                         </tr>
                         </thead>
                         <tbody>
@@ -87,15 +90,18 @@
                                                 <img src="{{$model->images()->first()['path']}}" class="img-rounded" alt="Imagen" width="60px">
                                             @endif
                                         </div>
-                                        </td> 
+                                        </td>
                                         <td>N/S : {{$model->n_serie}}</td>
                                         <td>{{$model->Models->Brands->name or '' }} <strong>{{$model->Models->name or '' }}</strong><br></td>
+                                        <td> {{ config('status.capacidades_tipo.'. $model->items_capacidad_tipo_id)}}</td>
+                                        <td>{{$model->capacidad}}</td>
+
                                         <td>
-                                           @foreach($model->Models->Categories as $cat) 
+                                           @foreach($model->Models->Categories as $cat)
 
                                            <span class="label label-success">{{$cat->name}}</span>
 
-                                            @endforeach 
+                                            @endforeach
 
                                         </td>
                                         <td>
