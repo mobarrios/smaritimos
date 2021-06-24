@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://inventario.serviciosmaritimos.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -235,7 +235,7 @@ return [
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
 
-
+	'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
 
     ],
 

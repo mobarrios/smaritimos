@@ -69,9 +69,8 @@
                                 <tr>
                                     <td >{{$item->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
-                                    <td>{{$item->f_vencimiento}}</td>
-                                    <td>{{$item->Brancheables()->first()->branches->name}}</td>
-                                    <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
+                                    <td>{{$item->f_vencimiento or ''}}</td>
+                                     <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
                                 </tr>
                             @endif
                         @endforeach
@@ -115,7 +114,7 @@
                                     <td>{{$ant->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$ant->id)}}"><strong>{{$ant->Models->Brands->name}}</strong>  {{$ant->Models->name}}</a></td>
                                     <td>{{$ant->f_vencimiento}}</td>
-                                    <td>{{$ant->Brancheables()->first()->branches->name}}</td>
+                                    <td>{{$ant->Brancheables()->first()->branches->name or ''}}</td>
                                     <td><label class="label label-default">{{ config('status.items.' . $ant->status) }}</label></td>
                                 </tr>
                         @endforeach
