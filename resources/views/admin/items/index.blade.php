@@ -195,7 +195,7 @@ $('.dateTable').DataTable( {
     ],
     columnDefs: [{
     targets: -1,
-    visible: false
+    visible: true
     }]
 
 });
