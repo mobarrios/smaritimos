@@ -34,10 +34,10 @@
 
         <div class="col-sm-9 col-xs-12">
             <!-- small box -->
-            
+
             <div class="box box-danger">
                 <div class="box-header">
-                    <h3 class="box-title">                      
+                    <h3 class="box-title">
                         <i class="ion ion-android-calendar"></i> <strong>Proximos Vencimientos</strong></h3>
 
                                         <a  href="{{route('admin.items.sendMail')}}" class=" pull-right btn btn-xs btn-default"><span class="fa fa-envelope"></span> Enviar Mail  </a>
@@ -64,21 +64,22 @@
                     </thead>
                     <tbody>
                         @foreach($items as $item)
-                            @if($item->isVencido)   
-                   
+                            @if($item->isVencido)
+
                                 <tr>
                                     <td >{{$item->id}}</td>
                                     <td><a href="{{route('admin.items.edit',$item->id)}}"><strong>{{$item->Models->Brands->name}}</strong>  {{$item->Models->name}}</a></td>
                                     <td>{{$item->f_vencimiento or ''}}</td>
-                                     <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
+                                    <td>{{$item->Brancheables()->first()->branches->name or ''}}</td>
+                                    <td><label class="label label-default">{{ config('status.items.' . $item->status) }}</label></td>
                                 </tr>
                             @endif
                         @endforeach
                     </tbody>
-                    
+
                 </table>
                 </div>
-                
+
             </div>
        </div>
 
@@ -86,7 +87,7 @@
             <!-- small box -->
             <div class="box box-warning">
                 <div class="box-header">
-                    <h3 class="box-title">                      
+                    <h3 class="box-title">
                         <i class="ion ion-android-calendar"></i> <strong>Articulos Vencidos</strong></h3>
                 </div>
                 <div class="box-body">
@@ -128,7 +129,7 @@
             <!-- small box -->
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">                      
+                    <h3 class="box-title">
                         <i class="ion ion-android-calendar"></i> <strong>Articulos En Trámite</strong></h3>
                 </div>
                 <div class="box-body">
